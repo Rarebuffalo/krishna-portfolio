@@ -3,20 +3,20 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+const bootLogs = [
+  "KRISHNA OS v2.0 STATUS: INITIALIZING",
+  "CORE :: Loading CPU clusters [OK]",
+  "SYSTEM :: Initializing active memory buffers [OK]",
+  "ARCHITECTURES :: Mapping node connections [OK]",
+  "LOGS :: Syncing compiled logs index [OK]",
+  "KNOWLEDGE_BASE :: Loading offline terminal seed [OK]",
+  "DEPLOYS :: Establishing socket channels [OK]",
+  "KRISHNA OS :: ONLINE"
+];
+
 export default function BootSequence({ onComplete }: { onComplete: () => void }) {
   const [lines, setLines] = useState<string[]>([]);
   const [skipped, setSkipped] = useState(false);
-
-  const bootLogs = [
-    "KRISHNA OS v2.0 STATUS: INITIALIZING",
-    "CORE :: Loading CPU clusters [OK]",
-    "SYSTEM :: Initializing active memory buffers [OK]",
-    "ARCHITECTURES :: Mapping node connections [OK]",
-    "LOGS :: Syncing compiled logs index [OK]",
-    "KNOWLEDGE_BASE :: Loading offline terminal seed [OK]",
-    "DEPLOYS :: Establishing socket channels [OK]",
-    "KRISHNA OS :: ONLINE"
-  ];
 
   useEffect(() => {
     if (skipped) return;
@@ -36,7 +36,7 @@ export default function BootSequence({ onComplete }: { onComplete: () => void })
     }, 110); // Totals ~1.0 second
 
     return () => clearInterval(interval);
-  }, [skipped]);
+  }, [skipped, onComplete]);
 
   const handleSkip = () => {
     setSkipped(true);

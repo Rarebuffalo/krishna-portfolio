@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { portfolioSystems, PortfolioSystem, SystemNode } from "@/data/portfolioData";
+import { portfolioSystems, SystemNode } from "@/data/portfolioData";
 import { DatabaseIcon, ServerIcon, SparklesIcon, CpuIcon, ActivityIcon, XIcon } from "./CustomIcons";
 
 type SystemDesignVisualizerProps = {

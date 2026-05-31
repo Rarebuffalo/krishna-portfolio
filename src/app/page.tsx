@@ -9,7 +9,7 @@ import SystemMap from "@/components/SystemMap";
 import SystemDesignVisualizer from "@/components/SystemDesignVisualizer";
 import Experience from "@/components/Experience";
 import KnowledgeTerminal from "@/components/KnowledgeTerminal";
-import { ActivityIcon, CpuIcon, MapIcon, TerminalIcon, BriefcaseIcon, ChevronUpIcon, GithubIcon, XIcon, ServerIcon, SparklesIcon } from "@/components/CustomIcons";
+import { CpuIcon, MapIcon, TerminalIcon, BriefcaseIcon, ChevronUpIcon, GithubIcon, XIcon, ServerIcon, SparklesIcon } from "@/components/CustomIcons";
 
 export default function Home() {
   const [bootComplete, setBootComplete] = useState(false);
