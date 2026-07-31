@@ -13,19 +13,19 @@ An automated repository security scanner using concurrency constraints and LLM-d
 *   **Stack:** Python, FastAPI, Gemini API, Pydantic v2, PostgreSQL, SQLAlchemy.
 *   **Repository:** [securelens-backend](https://github.com/Rarebuffalo/securelens-backend)
 
-### 2. TxnForge
-A high-performance transactional authentication and secure validation engine designed for B2B SaaS portals.
-*   **Key Highlights:** Built a gRPC authentication service managing secure state checks against a decoupled JWT session store cached in Redis.
-*   **Outcome:** Achieved sub-15ms validation responses and reduced direct database requests by **84%**.
-*   **Stack:** Go, gRPC, Redis, PostgreSQL, Docker, GitHub Actions.
-*   **Repository:** [TxnForge](https://github.com/Rarebuffalo/TxnForge)
+### 2. Sentinel System
+A startup-ready multi-tenant API monitor with automated Celery checks and instant Slack/Discord alerts.
+*   **Key Highlights:** Asynchronous FastAPI backend scheduling tasks via Celery worker intervals over Redis brokers.
+*   **Outcome:** Dispatches endpoint downtime alerts within 150ms of failures.
+*   **Stack:** Python, FastAPI, Celery, Redis, Node.js, React, PostgreSQL.
+*   **Repository:** [Sentinel](https://github.com/Rarebuffalo/Sentinel)
 
-### 3. FlientSec
-A product-driven threat intelligence and real-time audit-compliance orchestrator.
-*   **Key Highlights:** Decouples heavy audit log checks using RabbitMQ background tasks to aggregate evidence blocks for SOC 2 and ISO 27001 scopes.
-*   **Outcome:** Automated **80%** of compliance metrics tracking and reports generation.
-*   **Stack:** Python, Django, PostgreSQL, RabbitMQ, React, AWS.
-*   **Repository:** [FlientSec](https://github.com/Rarebuffalo/FlientSec)
+### 3. EquityForge
+A financial research automation platform transforming unstructured documents into institutional-quality equity research reports.
+*   **Key Highlights:** FastAPI backend parsing PDF/TXT/CSV files, running structured GPT-4o/Gemini extractions, and rendering programmatic Matplotlib charts inside A4-paginated HTML pages compiled via WeasyPrint.
+*   **Outcome:** Automated the generation of print-perfect 4-page institutional PDFs in seconds.
+*   **Stack:** Python, FastAPI, Next.js, GPT-4o / Gemini, WeasyPrint, Matplotlib, Pydantic.
+*   **Repository:** [equityforge](https://github.com/Rarebuffalo/equityforge)
 
 ---
 
@@ -48,8 +48,8 @@ A product-driven threat intelligence and real-time audit-compliance orchestrator
 
 ## Codebase Structure
 
-*   `src/app/page.tsx`: Editorial narrative landing page.
-*   `src/app/systems/[id]/page.tsx`: Case study routing template showing failure stories and design details.
-*   `src/components/`: Modular UI assets including background blueprint grids, header menus, and project grid modules.
+*   `src/app/page.tsx`: Editorial narrative landing page with "Curiosity Builds" grid and "Active Build" highlight.
+*   `src/app/systems/[id]/page.tsx`: Case study routing template showing failure stories, trade-offs, and scaled architecture node graphs.
+*   `src/components/`: Modular UI assets including background blueprint grids, navigation headers, and project grid modules.
 *   `src/data/portfolioData.ts`: Unified data definitions for systems and metrics.
 *   `documentation/`: Architectural logs detailing failure scenarios and setups.
