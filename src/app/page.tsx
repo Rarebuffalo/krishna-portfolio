@@ -245,6 +245,14 @@ export default function Home() {
               LinkedIn ↗
             </a>
             <a
+              href="https://x.com/rarebuffalo1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[13px] text-[#8b8f96] flex items-center gap-[6px] transition-colors hover:text-[#d4a657]"
+            >
+              X (Twitter) ↗
+            </a>
+            <a
               href="https://github.com/krishnasingh020"
               target="_blank"
               rel="noopener noreferrer"
