@@ -26,51 +26,57 @@ export default function FeaturedProjects() {
             <text x="34" y="110" fill="#8b8f96" fontFamily="var(--font-mono)" fontSize="7">status: 0 vulnerabilities found</text>
           </svg>
         );
-      case "txnforge":
+      case "sentinel":
         return (
           <svg className="w-[78%] h-[78%] viz" viewBox="0 0 200 140" fill="none">
-            {/* Distributed Auth validation layout */}
-            <rect x="15" y="15" width="50" height="110" rx="3" stroke="var(--line-strong)" strokeWidth="1" />
-            <rect x="135" y="15" width="50" height="110" rx="3" stroke="var(--line-strong)" strokeWidth="1" />
+            {/* Celery Background Poller + Redis Queue Visualizer */}
+            <rect x="20" y="25" width="160" height="90" rx="3" stroke="var(--line-strong)" strokeWidth="1" />
+            <line x1="20" y1="45" x2="180" y2="45" stroke="var(--line)" strokeWidth="1" />
+            <text x="32" y="37" fill="#8b8f96" fontFamily="var(--font-mono)" fontSize="7">UPTIME MONITOR</text>
             
-            {/* Client request */}
-            <circle cx="40" cy="40" r="12" fill="var(--panel)" stroke="var(--line-strong)" strokeWidth="1" />
-            <circle cx="40" cy="40" r="4" fill="var(--gold)" />
+            {/* Server polling loops */}
+            <circle cx="45" cy="75" r="10" fill="var(--panel)" stroke="var(--line-strong)" strokeWidth="1" />
+            <circle cx="45" cy="75" r="4" fill="var(--gold)" />
+            <text x="45" y="95" fill="#5c6066" fontFamily="var(--font-mono)" fontSize="6" textAnchor="middle">FastAPI</text>
             
-            {/* Server verification */}
-            <circle cx="160" cy="100" r="12" fill="var(--panel)" stroke="var(--line-strong)" strokeWidth="1" />
-            <circle cx="160" cy="100" r="4" fill="var(--soft-white)" />
+            <circle cx="100" cy="75" r="10" fill="var(--panel)" stroke="var(--line-strong)" strokeWidth="1" />
+            <circle cx="100" cy="75" r="4" fill="var(--soft-white)" />
+            <text x="100" y="95" fill="#5c6066" fontFamily="var(--font-mono)" fontSize="6" textAnchor="middle">Redis Queue</text>
 
-            {/* Connecting lines showing token route */}
-            <path d="M 52 40 C 90 40, 110 100, 148 100" stroke="var(--gold)" strokeWidth="1" strokeDasharray="3 3" />
-            <text x="75" y="30" fill="#8b8f96" fontFamily="var(--font-mono)" fontSize="6">Token: E2E Verify</text>
+            <circle cx="155" cy="75" r="10" fill="var(--panel)" stroke="var(--line-strong)" strokeWidth="1" />
+            <circle cx="155" cy="75" r="4" fill="var(--gold)" />
+            <text x="155" y="95" fill="#5c6066" fontFamily="var(--font-mono)" fontSize="6" textAnchor="middle">Celery Worker</text>
             
-            <text x="25" y="110" fill="#5c6066" fontFamily="var(--font-mono)" fontSize="8">gRPC</text>
-            <text x="145" y="110" fill="var(--gold)" fontFamily="var(--font-mono)" fontSize="8">Redis</text>
+            <path d="M 55 75 L 90 75" stroke="var(--line-strong)" strokeWidth="1.5" />
+            <path d="M 110 75 L 145 75" stroke="var(--line-strong)" strokeWidth="1.5" />
           </svg>
         );
-      case "flientsec":
+      case "equityforge":
         return (
           <svg className="w-[78%] h-[78%] viz" viewBox="0 0 200 140" fill="none">
-            {/* Multi-tenant security dashboard mock */}
-            <rect x="20" y="25" width="160" height="90" rx="4" stroke="var(--line-strong)" strokeWidth="1" />
+            {/* Document parser ➔ structured extraction ➔ PDF rendering layout */}
+            <rect x="25" y="20" width="150" height="100" rx="2" stroke="var(--line-strong)" strokeWidth="1" />
             
-            {/* Header row */}
-            <line x1="20" y1="45" x2="180" y2="45" stroke="var(--line)" />
-            <circle cx="34" cy="35" r="3" fill="#2c2f34" />
-            <circle cx="44" cy="35" r="3" fill="#2c2f34" />
+            {/* Input document preview */}
+            <rect x="37" y="32" width="30" height="40" rx="1" fill="var(--panel)" stroke="var(--line-strong)" strokeWidth="1" />
+            <line x1="42" y1="40" x2="62" y2="40" stroke="var(--line-strong)" strokeWidth="1" />
+            <line x1="42" y1="48" x2="58" y2="48" stroke="var(--line-strong)" strokeWidth="1" />
+            <text x="52" y="82" fill="#5c6066" fontFamily="var(--font-mono)" fontSize="6" textAnchor="middle">PDF/CSV</text>
             
-            {/* Column cards */}
-            <rect x="30" y="55" width="40" height="48" rx="2" fill="var(--panel)" stroke="var(--line)" />
-            <rect x="36" y="65" width="20" height="4" fill="var(--gold)" opacity="0.8" />
-            <circle cx="50" cy="85" r="8" fill="none" stroke="var(--line-strong)" strokeWidth="2" />
-            <circle cx="50" cy="85" r="4" fill="var(--gold)" />
+            {/* Transformation arrow */}
+            <path d="M 75 52 L 95 52" stroke="var(--gold)" strokeWidth="1.5" markerEnd="url(#arrow)" />
             
-            {/* Right side check logs list */}
-            <rect x="85" y="58" width="80" height="6" rx="1" fill="var(--line-strong)" />
-            <rect x="85" y="70" width="80" height="6" rx="1" fill="var(--line-strong)" />
-            <rect x="85" y="82" width="60" height="6" rx="1" fill="var(--gold)" opacity="0.3" />
-            <rect x="85" y="94" width="70" height="6" rx="1" fill="var(--line-strong)" />
+            {/* Output institutional report layout */}
+            <rect x="105" y="32" width="55" height="76" rx="2" fill="var(--panel)" stroke="var(--gold)" strokeWidth="1" />
+            <line x1="110" y1="42" x2="155" y2="42" stroke="var(--gold)" strokeWidth="1" />
+            <rect x="110" y="48" width="16" height="16" rx="1" fill="var(--line-strong)" />
+            <line x1="132" y1="52" x2="150" y2="52" stroke="var(--line-strong)" strokeWidth="1" />
+            <line x1="132" y1="60" x2="146" y2="60" stroke="var(--line-strong)" strokeWidth="1" />
+            <line x1="110" y1="72" x2="150" y2="72" stroke="var(--line-strong)" strokeWidth="1" />
+            <line x1="110" y1="80" x2="140" y2="80" stroke="var(--line-strong)" strokeWidth="1" />
+            <line x1="110" y1="88" x2="150" y2="88" stroke="var(--line-strong)" strokeWidth="1" />
+            
+            <text x="132.5" y="117" fill="var(--gold)" fontFamily="var(--font-mono)" fontSize="6" textAnchor="middle">4-Page PDF</text>
           </svg>
         );
       default:
@@ -82,7 +88,7 @@ export default function FeaturedProjects() {
     <section className="work py-[96px] reveal border-b border-[rgba(245,245,242,0.08)]" id="work">
       <div className="section-head flex items-baseline justify-between pb-[40px] border-b border-[rgba(245,245,242,0.08)] mb-[64px]">
         <div>
-          <span className="label mono text-[12px] text-[#d4a657]">SELECTED WORK</span>
+          <span className="label mono text-[12px] text-[#d4a657]">FEATURED PROJECTS</span>
           <h2 className="font-display font-semibold text-[32px] max-md:text-[24px] mt-[6px] text-[#f2f1ec]">
             Three things worth your time
           </h2>
