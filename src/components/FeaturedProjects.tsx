@@ -86,7 +86,7 @@ export default function FeaturedProjects() {
   };
 
   return (
-    <section className="work py-[96px] reveal border-b border-[rgba(245,245,242,0.08)]" id="work">
+    <section className="work py-[96px] reveal border-b border-[rgba(245,245,242,0.08)]" id="featured-projects">
       <div className="section-head flex items-baseline justify-between pb-[40px] border-b border-[rgba(245,245,242,0.08)] mb-[64px]">
         <div>
           <span className="label mono text-[12px] text-[#d4a657]">FEATURED PROJECTS</span>
