@@ -81,12 +81,12 @@ export const portfolioSystems: PortfolioSystem[] = [
       fix: "Refactored the orchestrator to perform asynchronous file fetching and concurrent LLM requests via asyncio, throttled by a Semaphore of 5."
     },
     nodes: [
-      { id: "sl-client", label: "React Frontend", type: "frontend", x: 10, y: 50 },
-      { id: "sl-gateway", label: "FastAPI Gateway", type: "gateway", x: 180, y: 50 },
-      { id: "sl-gather", label: "Async Tasks & Semaphore", type: "worker", x: 350, y: 50 },
-      { id: "sl-ai", label: "Gemini 2.0 Flash API", type: "ai", x: 530, y: 10 },
-      { id: "sl-db", label: "PostgreSQL Store", type: "database", x: 530, y: 90 },
-      { id: "sl-github", label: "GitHub API", type: "gateway", x: 700, y: 50 }
+      { id: "sl-client", label: "React Frontend", type: "frontend", x: 80, y: 75 },
+      { id: "sl-gateway", label: "FastAPI Gateway", type: "gateway", x: 230, y: 75 },
+      { id: "sl-gather", label: "Async Queue", type: "worker", x: 380, y: 75 },
+      { id: "sl-ai", label: "Gemini API", type: "ai", x: 530, y: 35 },
+      { id: "sl-db", label: "PostgreSQL", type: "database", x: 530, y: 115 },
+      { id: "sl-github", label: "GitHub API", type: "gateway", x: 690, y: 75 }
     ],
     edges: [
       { from: "sl-client", to: "sl-gateway", label: "HTTPS POST", animated: true },
@@ -128,12 +128,12 @@ export const portfolioSystems: PortfolioSystem[] = [
       fix: "Secured database queries by implementing strict JWT middleware locks using SQLAlchemy dependencies binding operations directly to authenticated session contexts."
     },
     nodes: [
-      { id: "se-dashboard", label: "React Frontend", type: "frontend", x: 10, y: 50 },
-      { id: "se-gateway", label: "FastAPI API Server", type: "gateway", x: 180, y: 50 },
-      { id: "se-redis", label: "Redis Broker", type: "queue", x: 350, y: 50 },
-      { id: "se-celery", label: "Celery Worker", type: "worker", x: 520, y: 50 },
-      { id: "se-node", label: "Node.js Alerts Service", type: "worker", x: 700, y: 10 },
-      { id: "se-db", label: "PostgreSQL DB", type: "database", x: 700, y: 90 }
+      { id: "se-dashboard", label: "React Frontend", type: "frontend", x: 80, y: 75 },
+      { id: "se-gateway", label: "FastAPI Server", type: "gateway", x: 230, y: 75 },
+      { id: "se-redis", label: "Redis Broker", type: "queue", x: 380, y: 75 },
+      { id: "se-celery", label: "Celery Worker", type: "worker", x: 530, y: 75 },
+      { id: "se-node", label: "Node Alerts", type: "worker", x: 690, y: 35 },
+      { id: "se-db", label: "PostgreSQL", type: "database", x: 690, y: 115 }
     ],
     edges: [
       { from: "se-dashboard", to: "se-gateway", label: "Poll Stats", animated: true },
@@ -175,11 +175,11 @@ export const portfolioSystems: PortfolioSystem[] = [
       fix: "Migrated to a server-side WeasyPrint converter utilizing Jinja2 HTML templates and CSS print specifications."
     },
     nodes: [
-      { id: "ef-ui", label: "Next.js Upload UI", type: "frontend", x: 10, y: 50 },
-      { id: "ef-api", label: "FastAPI Backend", type: "gateway", x: 200, y: 50 },
-      { id: "ef-llm", label: "Gemini / OpenAI API", type: "ai", x: 380, y: 10 },
-      { id: "ef-pdf", label: "WeasyPrint Compiler", type: "worker", x: 380, y: 90 },
-      { id: "ef-output", label: "PDF Download", type: "database", x: 560, y: 50 }
+      { id: "ef-ui", label: "Next.js UI", type: "frontend", x: 80, y: 75 },
+      { id: "ef-api", label: "FastAPI Backend", type: "gateway", x: 230, y: 75 },
+      { id: "ef-llm", label: "Gemini / OpenAI", type: "ai", x: 380, y: 35 },
+      { id: "ef-pdf", label: "WeasyPrint", type: "worker", x: 380, y: 115 },
+      { id: "ef-output", label: "PDF Download", type: "database", x: 530, y: 75 }
     ],
     edges: [
       { from: "ef-ui", to: "ef-api", label: "Upload docs", animated: true },
@@ -378,7 +378,7 @@ export const portfolioSystems: PortfolioSystem[] = [
     color: "blue",
     tagline: "Natural language search agent and filter discoverer for Google Drive files using LangGraph.",
     problem: "Finding files inside cluttered enterprise Google Drive folders using basic keywords is tedious and frequently misses files.",
-    solution: "Built a LangGraph-powered conversational search assistant. The React agent parses natural language query criteria, translates them to Drive API search parameters, and pulls matches, displaying them in a Streamlit chat.",
+    solution: "Built a LangGraph-powered conversational search assistant. The React agent parses natural language query criteria, translates them to Drive Drive API search parameters, and pulls matches, displaying them in a Streamlit chat.",
     impact: [
       "Finds files in Google Drive using natural conversational query text.",
       "Translates complex queries to valid Drive API 'q' parameters automatically.",
