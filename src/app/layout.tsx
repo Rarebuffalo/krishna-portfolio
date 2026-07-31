@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import CursorCat from "@/components/CursorCat";
 
 export const metadata: Metadata = {
   title: "Krishna — Systems & Backend Engineer",
@@ -15,6 +16,7 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body className="antialiased">
         {children}
+        <CursorCat />
       </body>
     </html>
   );
