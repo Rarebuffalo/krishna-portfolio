@@ -61,12 +61,14 @@ body {
 .wrap {
   max-width: var(--max-w);
   margin: 0 auto;
-  padding: 0 var(--space-4);
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
 }
 
 @media (max-width: 860px) {
   .wrap {
-    padding: 0 var(--space-3);
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
   }
 }
 
