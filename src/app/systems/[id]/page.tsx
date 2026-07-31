@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, use } from "react";
+import React, { use } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { portfolioSystems } from "@/data/portfolioData";
