@@ -53,29 +53,38 @@ export default function Header() {
             </a>
           </div>
 
-          <button
-            onClick={toggleTheme}
-            className="flex items-center justify-center w-[36px] h-[36px] rounded-full border border-[rgba(245,245,242,0.08)] bg-[#101215]/40 hover:bg-[#101215]/80 hover:border-[#d4a657]/40 text-[#8b8f96] hover:text-[#f2f1ec] transition-all cursor-pointer"
-            aria-label="Toggle Theme"
-          >
-            {theme === "light" ? (
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
-              </svg>
-            ) : (
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="4" />
-                <path d="M12 2v2" />
-                <path d="M12 20v2" />
-                <path d="M4.93 4.93l1.41 1.41" />
-                <path d="M17.66 17.66l1.41 1.41" />
-                <path d="M2 12h2" />
-                <path d="M20 12h2" />
-                <path d="M6.34 17.66l-1.41 1.41" />
-                <path d="M19.07 4.93l-1.41 1.41" />
-              </svg>
-            )}
-          </button>
+          <div className="theme-toggle" role="group" aria-label="Theme">
+            <button
+              type="button"
+              id="theme-dark"
+              className={theme === "dark" ? "active" : ""}
+              onClick={() => {
+                setTheme("dark");
+                document.documentElement.setAttribute("data-theme", "dark");
+                document.documentElement.classList.remove("light");
+                localStorage.setItem("theme", "dark");
+              }}
+              aria-label="Dark theme"
+              title="Dark"
+            >
+              ●
+            </button>
+            <button
+              type="button"
+              id="theme-light"
+              className={theme === "light" ? "active" : ""}
+              onClick={() => {
+                setTheme("light");
+                document.documentElement.setAttribute("data-theme", "light");
+                document.documentElement.classList.add("light");
+                localStorage.setItem("theme", "light");
+              }}
+              aria-label="Light theme"
+              title="Light"
+            >
+              ○
+            </button>
+          </div>
         </div>
       </nav>
     </header>

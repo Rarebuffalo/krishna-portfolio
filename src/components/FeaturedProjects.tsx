@@ -16,15 +16,15 @@ export default function FeaturedProjects() {
           <svg className="w-[78%] h-[78%] viz" viewBox="0 0 200 140" fill="none">
             <rect x="20" y="20" width="160" height="100" rx="3" stroke="var(--line-strong)" strokeWidth="1" />
             <line x1="20" y1="42" x2="180" y2="42" stroke="var(--line)" strokeWidth="1" />
-            <circle cx="34" cy="31" r="3" fill="#2c2f34" />
-            <circle cx="44" cy="31" r="3" fill="#2c2f34" />
-            <circle cx="54" cy="31" r="3" fill="#2c2f34" />
+            <circle cx="34" cy="31" r="3" fill="var(--media-fill-mid)" />
+            <circle cx="44" cy="31" r="3" fill="var(--media-fill-mid)" />
+            <circle cx="54" cy="31" r="3" fill="var(--media-fill-mid)" />
             {/* Simulated file paths & vulnerability logs */}
             <text x="34" y="60" fill="var(--gold)" fontFamily="var(--font-mono)" fontSize="8" opacity="0.85">SECURELENS SCANNER</text>
-            <rect x="34" y="70" width="110" height="4" rx="1" fill="var(--line-strong)" />
+            <rect x="34" y="70" width="110" height="4" rx="1" fill="var(--media-fill-dim)" />
             <rect x="34" y="80" width="130" height="4" rx="1" fill="var(--gold)" opacity="0.45" />
-            <rect x="34" y="90" width="80" height="4" rx="1" fill="var(--line-strong)" />
-            <text x="34" y="110" fill="#8b8f96" fontFamily="var(--font-mono)" fontSize="7">status: 0 vulnerabilities found</text>
+            <rect x="34" y="90" width="80" height="4" rx="1" fill="var(--media-fill-dim)" />
+            <text x="34" y="110" fill="var(--gray)" fontFamily="var(--font-mono)" fontSize="7">status: 0 vulnerabilities found</text>
           </svg>
         );
       case "sentinel":
@@ -33,20 +33,20 @@ export default function FeaturedProjects() {
             {/* Celery Background Poller + Redis Queue Visualizer */}
             <rect x="20" y="25" width="160" height="90" rx="3" stroke="var(--line-strong)" strokeWidth="1" />
             <line x1="20" y1="45" x2="180" y2="45" stroke="var(--line)" strokeWidth="1" />
-            <text x="32" y="37" fill="#8b8f96" fontFamily="var(--font-mono)" fontSize="7">UPTIME MONITOR</text>
+            <text x="32" y="37" fill="var(--gray)" fontFamily="var(--font-mono)" fontSize="7">UPTIME MONITOR</text>
             
             {/* Server polling loops */}
             <circle cx="45" cy="75" r="10" fill="var(--panel)" stroke="var(--line-strong)" strokeWidth="1" />
             <circle cx="45" cy="75" r="4" fill="var(--gold)" />
-            <text x="45" y="95" fill="#5c6066" fontFamily="var(--font-mono)" fontSize="6" textAnchor="middle">FastAPI</text>
+            <text x="45" y="95" fill="var(--gray-dim)" fontFamily="var(--font-mono)" fontSize="6" textAnchor="middle">FastAPI</text>
             
             <circle cx="100" cy="75" r="10" fill="var(--panel)" stroke="var(--line-strong)" strokeWidth="1" />
             <circle cx="100" cy="75" r="4" fill="var(--soft-white)" />
-            <text x="100" y="95" fill="#5c6066" fontFamily="var(--font-mono)" fontSize="6" textAnchor="middle">Redis Queue</text>
+            <text x="100" y="95" fill="var(--gray-dim)" fontFamily="var(--font-mono)" fontSize="6" textAnchor="middle">Redis Queue</text>
 
             <circle cx="155" cy="75" r="10" fill="var(--panel)" stroke="var(--line-strong)" strokeWidth="1" />
             <circle cx="155" cy="75" r="4" fill="var(--gold)" />
-            <text x="155" y="95" fill="#5c6066" fontFamily="var(--font-mono)" fontSize="6" textAnchor="middle">Celery Worker</text>
+            <text x="155" y="95" fill="var(--gray-dim)" fontFamily="var(--font-mono)" fontSize="6" textAnchor="middle">Celery Worker</text>
             
             <path d="M 55 75 L 90 75" stroke="var(--line-strong)" strokeWidth="1.5" />
             <path d="M 110 75 L 145 75" stroke="var(--line-strong)" strokeWidth="1.5" />
@@ -62,7 +62,7 @@ export default function FeaturedProjects() {
             <rect x="37" y="32" width="30" height="40" rx="1" fill="var(--panel)" stroke="var(--line-strong)" strokeWidth="1" />
             <line x1="42" y1="40" x2="62" y2="40" stroke="var(--line-strong)" strokeWidth="1" />
             <line x1="42" y1="48" x2="58" y2="48" stroke="var(--line-strong)" strokeWidth="1" />
-            <text x="52" y="82" fill="#5c6066" fontFamily="var(--font-mono)" fontSize="6" textAnchor="middle">PDF/CSV</text>
+            <text x="52" y="82" fill="var(--gray-dim)" fontFamily="var(--font-mono)" fontSize="6" textAnchor="middle">PDF/CSV</text>
             
             {/* Transformation arrow */}
             <path d="M 75 52 L 95 52" stroke="var(--gold)" strokeWidth="1.5" markerEnd="url(#arrow)" />
@@ -106,9 +106,9 @@ export default function FeaturedProjects() {
               className={`grid grid-cols-2 max-[860px]:grid-cols-1 gap-[64px] items-center py-[64px] border-b border-[rgba(245,245,242,0.08)] last:border-b-0`}
             >
               {/* Media Section */}
-              <div className={`relative aspect-[4/3] rounded-[3px] border border-[rgba(245,245,242,0.14)] bg-gradient-to-br from-[#14161a] to-[#0c0d0f] overflow-hidden flex items-center justify-center ${isAlt ? "min-[861px]:order-2" : ""}`}>
-                <div className="absolute inset-[14px] border border-[rgba(245,245,242,0.08)] rounded-[2px]" />
-                <span className="glyph font-mono text-[12px] text-[#5c6066] absolute top-[20px] left-[26px]">
+              <div className={`relative aspect-[4/3] rounded-[3px] border border-line-strong bg-gradient-to-br from-[var(--media-1)] to-[var(--media-2)] overflow-hidden flex items-center justify-center ${isAlt ? "min-[861px]:order-2" : ""}`}>
+                <div className="absolute inset-[14px] border border-line rounded-[2px]" />
+                <span className="glyph font-mono text-[12px] text-gray-dim absolute top-[20px] left-[26px]">
                   {project.id} · viz
                 </span>
                 {renderSVG(project.id)}

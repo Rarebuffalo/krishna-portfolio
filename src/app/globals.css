@@ -19,6 +19,7 @@
 
 :root {
   --obsidian: #0a0b0d;
+  --obsidian-rgb: 10, 11, 13;
   --panel: #101215;
   --line: rgba(245, 245, 242, 0.08);
   --line-strong: rgba(245, 245, 242, 0.14);
@@ -27,6 +28,13 @@
   --gray-dim: #5c6066;
   --gold: #d4a657;
   --gold-dim: rgba(212, 166, 87, 0.45);
+  --media-1: #14161a;
+  --media-2: #0c0d0f;
+  --media-fill-strong: #1c1e22;
+  --media-fill-mid: #4a4d52;
+  --media-fill-dim: #2c2f34;
+  --backdrop: rgba(10, 11, 13, 0.65);
+  color-scheme: dark;
   --radius: 3px;
   
   --space-1: 8px;
@@ -41,15 +49,23 @@
 
 :root[data-theme="light"],
 html.light {
-  --obsidian: #f5f5f2;
-  --panel: #ffffff;
-  --line: rgba(10, 11, 13, 0.08);
-  --line-strong: rgba(10, 11, 13, 0.14);
-  --soft-white: #0a0b0d;
-  --gray: #5c6066;
-  --gray-dim: #8b8f96;
-  --gold: #b28236;
-  --gold-dim: rgba(178, 130, 54, 0.15);
+  --obsidian: #f3f3f0;
+  --obsidian-rgb: 243, 243, 240;
+  --panel: #ececE7;
+  --line: rgba(15, 16, 18, 0.09);
+  --line-strong: rgba(15, 16, 18, 0.16);
+  --soft-white: #14151a;
+  --gray: #5b5e63;
+  --gray-dim: #8c8f94;
+  --gold: #a5711d;
+  --gold-dim: rgba(165, 113, 29, 0.35);
+  --media-1: #ffffff;
+  --media-2: #e9e9e4;
+  --media-fill-strong: #d8d8d2;
+  --media-fill-mid: #b3b4ae;
+  --media-fill-dim: #dcdcd6;
+  --backdrop: rgba(243, 243, 240, 0.72);
+  color-scheme: light;
 }
 
 ::selection {
@@ -160,5 +176,65 @@ body {
   stroke: var(--gold);
   stroke-width: 1;
   opacity: 0;
+}
+
+/* Smooth Transitions for Theme Switch */
+body, 
+.vignette, 
+header, 
+.card, 
+.experience-card, 
+.pill, 
+.currently-building, 
+svg, 
+rect, 
+circle, 
+line, 
+path {
+  transition: background .35s ease, background-color .35s ease, color .35s ease, border-color .35s ease, fill .35s ease, stroke .35s ease, opacity .35s ease;
+}
+
+/* Double-circle Theme Toggle style rules matching new-design */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: var(--space-4);
+  padding-left: var(--space-4);
+  border-left: 1px solid var(--line-strong);
+}
+
+.theme-toggle button {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  color: var(--gray);
+  cursor: pointer;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  transition: border-color .25s ease, color .25s ease, background .25s ease;
+}
+
+.theme-toggle button:hover {
+  border-color: var(--gold-dim);
+  color: var(--gold);
+}
+
+.theme-toggle button.active {
+  background: var(--gold-dim);
+  border-color: var(--gold);
+  color: var(--soft-white);
+}
+
+@media (max-width: 860px) {
+  .theme-toggle {
+    margin-left: var(--space-2);
+    padding-left: var(--space-2);
+  }
 }
 
