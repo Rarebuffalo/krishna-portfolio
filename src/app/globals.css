@@ -1,91 +1,149 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
 @theme inline {
-  --color-bg-dark: #050505;
-  --color-card-dark: #0D0D0E;
-  --color-border-dark: #1F1F22;
-  --color-border-focus: #333338;
-  --color-accent-blue: #0066FF;
-  --color-accent-purple: #7928CA;
+  --color-obsidian: #0a0b0d;
+  --color-panel: #101215;
+  --color-gold: #d4a657;
+  --color-gold-dim: rgba(212, 166, 87, 0.45);
+  --color-soft-white: #f2f1ec;
+  --color-gray-dark: #8b8f96;
+  --color-gray-dim: #5c6066;
+  --color-line: rgba(245, 245, 242, 0.08);
+  --color-line-strong: rgba(245, 245, 242, 0.14);
   
-  --font-sans: 'Outfit', Inter, var(--font-geist-sans), sans-serif;
-  --font-mono: 'Fira Code', ui-monospace, var(--font-geist-mono), monospace;
+  --font-sans: 'IBM Plex Sans', sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
 }
 
 :root {
-  --background: #050505;
-  --foreground: #F5F5F7;
-  --accent-blue: #0066FF;
-  --accent-purple: #7928CA;
+  --obsidian: #0a0b0d;
+  --panel: #101215;
+  --line: rgba(245, 245, 242, 0.08);
+  --line-strong: rgba(245, 245, 242, 0.14);
+  --soft-white: #f2f1ec;
+  --gray: #8b8f96;
+  --gray-dim: #5c6066;
+  --gold: #d4a657;
+  --gold-dim: rgba(212, 166, 87, 0.45);
+  --radius: 3px;
+  
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 40px;
+  --space-5: 64px;
+  --space-6: 96px;
+  --space-7: 144px;
+  --max-w: 1120px;
+}
+
+::selection {
+  background: var(--gold-dim);
+  color: var(--soft-white);
 }
 
 html {
-  font-size: 120%;
+  scroll-behavior: smooth;
 }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
+  background-color: var(--obsidian);
+  color: var(--soft-white);
   font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   margin: 0;
-  padding: 0;
-  text-rendering: optimizeLegibility;
 }
 
-/* Custom Scrollbar */
+/* Base custom classes matching new-design */
+.wrap {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+@media (max-width: 860px) {
+  .wrap {
+    padding: 0 var(--space-3);
+  }
+}
+
+.mono {
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+}
+
+/* Background Vignette */
+.vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(10,11,13,0) 0%, rgba(10,11,13,0.55) 60%, var(--obsidian) 100%);
+}
+
+/* Animations */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-rise {
+  animation: rise .8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .8s cubic-bezier(0.16, 1, 0.3, 1), transform .8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Scrollbar Styles */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #050505;
+  background: var(--obsidian);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1F1F22;
-  border-radius: 4px;
+  background: var(--line-strong);
+  border-radius: var(--radius);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #333338;
+  background: var(--gold-dim);
 }
 
-/* Glowing animations & grids */
-.grid-bg {
-  background-size: 50px 50px;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+/* Custom visual styles */
+.blueprint-node {
+  fill: var(--gold);
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
 
-.glow-blue {
-  box-shadow: 0 0 50px -10px rgba(0, 102, 255, 0.2);
+.blueprint-node.on {
+  opacity: 0.55;
 }
 
-.glow-purple {
-  box-shadow: 0 0 50px -10px rgba(121, 40, 202, 0.2);
+.blueprint-scan {
+  stroke: var(--gold);
+  stroke-width: 1;
+  opacity: 0;
 }
 
-.glow-green {
-  box-shadow: 0 0 50px -10px rgba(0, 255, 102, 0.2);
-}
-
-/* Glassmorphism card */
-.glass-panel {
-  background: rgba(13, 13, 14, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-@keyframes pulse-slow {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 0.7; }
-}
-
-.pulse-glow {
-  animation: pulse-slow 4s infinite ease-in-out;
-}
