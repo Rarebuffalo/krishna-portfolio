@@ -25,7 +25,7 @@ export default function SystemCaseStudyPage({ params }: Props) {
     return (
       <div className="w-full relative overflow-x-auto rounded-[3px] border border-[rgba(245,245,242,0.14)] bg-gradient-to-br from-[#14161a] to-[#0c0d0f] p-[24px] flex items-center justify-center min-h-[300px]">
         <div className="min-w-[600px] h-[200px] relative">
-          <svg className="absolute inset-0 w-full h-full" fill="none">
+          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 800 150" preserveAspectRatio="xMidYMid meet" fill="none">
             {/* Draw connectors */}
             {sys.edges.map((edge, idx) => {
               const fromNode = sys.nodes.find((n) => n.id === edge.from);
@@ -119,7 +119,7 @@ export default function SystemCaseStudyPage({ params }: Props) {
       </header>
 
       {/* Case Study Content */}
-      <main className="wrap relative z-10 pt-[128px] pb-[96px]">
+      <main className="wrap relative z-10 pt-[180px] pb-[96px]">
         <article className="max-w-[800px] mx-auto space-y-[64px]">
           
           {/* Title Header */}
