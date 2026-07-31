@@ -6,7 +6,7 @@ import Header from "@/components/Header";
 import FeaturedProjects from "@/components/FeaturedProjects";
 import TechMatrix from "@/components/TechMatrix";
 import Link from "next/link";
-import { portfolioSystems } from "@/data/portfolioData";
+import { portfolioSystems, experienceData } from "@/data/portfolioData";
 
 export default function Home() {
   useEffect(() => {
@@ -70,7 +70,7 @@ export default function Home() {
           
           <div className="cta-row mt-[64px] flex items-center gap-[24px] animate-rise [animation-delay:360ms] max-sm:flex-col max-sm:items-start max-sm:gap-[16px]">
             <a
-              href="#work"
+              href="#projects"
               className="btn btn-primary inline-flex items-center gap-[8px] px-[22px] py-[13px] text-[14px] font-medium rounded-[3px] bg-[#f2f1ec] text-[#0a0b0d] border border-[#f2f1ec] transition-all hover:bg-[#d4a657] hover:border-[#d4a657] hover:translate-y-[-1px]"
             >
               View Projects
@@ -89,135 +89,180 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Section 2: Flagship Work Grid */}
-        <FeaturedProjects />
-
-        {/* Section 3: Build out of Curiosity Grid */}
-        <section className="curiosity py-[96px] reveal border-b border-[rgba(245,245,242,0.08)]">
+        {/* Section 1.5: About Section */}
+        <section className="about py-[96px] reveal border-b border-[rgba(245,245,242,0.08)]" id="about">
           <div className="section-head flex items-baseline justify-between pb-[40px] border-b border-[rgba(245,245,242,0.08)] mb-[64px]">
             <div>
-              <span className="label mono text-[12px] text-[#d4a657]">OTHER WORK</span>
+              <span className="label mono text-[12px] text-[#d4a657]">ABOUT ME</span>
               <h2 className="font-display font-semibold text-[32px] max-md:text-[24px] mt-[6px] text-[#f2f1ec]">
-                Build out of curiosity
+                Software developer by trade, systems engineer by heart
               </h2>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 max-md:grid-cols-1 gap-[24px]">
-            {curiosityProjects.map((sys) => (
-              <div
-                key={sys.id}
-                className="card p-[24px] rounded-[3px] border border-[rgba(245,245,242,0.08)] bg-[#101215]/30 flex flex-col justify-between hover:border-[#d4a657]/35 transition-all"
-              >
-                <div>
-                  <h3 className="text-[17px] font-semibold text-[#f2f1ec] mb-[8px]">{sys.name}</h3>
-                  <p className="text-[13px] leading-[1.65] text-[#8b8f96] mb-[20px]">{sys.tagline}</p>
-                </div>
-                <div className="space-y-[16px]">
-                  <div className="flex flex-wrap gap-[6px]">
-                    {sys.stack.slice(0, 4).map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-[8px] py-[3px] rounded-[20px] bg-[#101215] border border-[rgba(245,245,242,0.08)] text-[#8b8f96] font-mono text-[10px]"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex gap-[16px] pt-[12px] border-t border-[rgba(245,245,242,0.08)]">
-                    <a
-                      href={sys.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[12px] font-medium text-[#f2f1ec] hover:text-[#d4a657] transition-colors"
-                    >
-                      GitHub ↗
-                    </a>
-                    <Link
-                      href={`/systems/${sys.id}`}
-                      className="text-[12px] font-medium text-[#f2f1ec] hover:text-[#d4a657] transition-colors"
-                    >
-                      Case Study ↗
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Section 4: Currently Building Banner */}
-        <section className="currently-building py-[96px] reveal border-b border-[rgba(245,245,242,0.08)]">
-          <div className="section-head flex items-baseline justify-between pb-[40px] border-b border-[rgba(245,245,242,0.08)] mb-[48px]">
-            <div>
-              <span className="label mono text-[12px] text-[#d4a657]">ACTIVE BUILD</span>
-              <h2 className="font-display font-semibold text-[32px] max-md:text-[24px] mt-[6px] text-[#f2f1ec]">
-                What I&apos;m building now
-              </h2>
-            </div>
-          </div>
-
-          <div className="p-[32px] rounded-[3px] border border-[#d4a657]/20 bg-linear-to-br from-[#14120f] to-[#0c0d0f] flex max-[860px]:flex-col items-center justify-between gap-[32px]">
-            <div className="space-y-[8px]">
-              <h3 className="text-[20px] font-semibold text-[#f2f1ec] flex items-center gap-[10px]">
-                <span className="dot w-[8px] h-[8px] rounded-full bg-[#d4a657] animate-pulse shadow-[0_0_8px_#d4a657]"></span>
-                FlientSec
-              </h3>
-              <p className="text-[14px] leading-[1.65] text-[#8b8f96] max-w-[600px]">
-                Product-driven threat intelligence and real-time audit-compliance orchestrator. Decouples heavy compliance audits and vulnerability scans using background task message queues to verify evidence blocks.
+          <div className="grid grid-cols-2 max-md:grid-cols-1 gap-[40px]">
+            <div className="text-[15px] leading-[1.7] text-[#8b8f96] space-y-[16px]">
+              <p>
+                I specialize in building backend architectures, reliable developer tools, and asynchronous workflow pipelines. My focus centers on making systems robust, highly concurrent, and audit-compliant.
+              </p>
+              <p>
+                I thrive in the space where data logic meets reliability—handling database scaling bottlenecks, event scheduling pipelines, and isolated code compilers.
               </p>
             </div>
-            <a
-              href="https://github.com/Rarebuffalo/FlientSec"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-ghost shrink-0 px-[20px] py-[10px] text-[13px] font-medium rounded-[3px] text-[#f2f1ec] border border-[rgba(245,245,242,0.14)] hover:border-[#d4a657] hover:text-[#d4a657] transition-all"
-            >
-              Source Repository ↗
-            </a>
+            <div className="text-[15px] leading-[1.7] text-[#8b8f96] space-y-[16px]">
+              <p>
+                My philosophy is straightforward: design correct systems, value data integrity above abstractions, and build software that startups can depend on to scale their operations.
+              </p>
+              <p>
+                Whether it is integrating automated AppSec vulnerability scanners, orchestration worker queues, or secure authorization layers, I strive to write clear, production-grade code.
+              </p>
+            </div>
           </div>
         </section>
 
-        {/* Section 5: Engineering Philosophy Grid */}
-        <section className="philosophy py-[96px] reveal border-b border-[rgba(245,245,242,0.08)]" id="philosophy">
-          <div className="section-head flex items-baseline justify-between pb-[40px] border-b border-[rgba(245,245,242,0.08)] mb-[64px]">
-            <div>
-              <span className="label mono text-[12px] text-[#d4a657]">HOW I WORK</span>
-              <h2 className="font-display font-semibold text-[32px] max-md:text-[24px] mt-[6px] text-[#f2f1ec]">
-                Engineering philosophy
-              </h2>
-            </div>
-          </div>
+        {/* Section 2: Projects Container */}
+        <section id="projects" className="projects-container border-b border-[rgba(245,245,242,0.08)]">
           
-          <div className="principles grid grid-cols-3 max-[860px]:grid-cols-1 gap-[40px]">
-            <div className="principle pt-[40px] border-t border-[rgba(245,245,242,0.14)]">
-              <span className="idx mono text-[12px] text-[#d4a657] block mb-[16px]">01</span>
-              <h3 className="text-[18px] font-semibold mb-[10px] text-[#f2f1ec]">Correctness before cleverness</h3>
-              <p className="text-[14px] leading-[1.65] text-[#8b8f96]">
-                I reason through edge cases before I reach for the elegant abstraction. Working code that&apos;s boring beats clever code that&apos;s fragile.
-              </p>
+          {/* Active Build Banner */}
+          <div className="currently-building py-[96px] reveal border-b border-[rgba(245,245,242,0.08)]">
+            <div className="section-head flex items-baseline justify-between pb-[40px] border-b border-[rgba(245,245,242,0.08)] mb-[48px]">
+              <div>
+                <span className="label mono text-[12px] text-[#d4a657]">ACTIVE BUILD</span>
+                <h2 className="font-display font-semibold text-[32px] max-md:text-[24px] mt-[6px] text-[#f2f1ec]">
+                  What I&apos;m building now
+                </h2>
+              </div>
             </div>
-            <div className="principle pt-[40px] border-t border-[rgba(245,245,242,0.14)]">
-              <span className="idx mono text-[12px] text-[#d4a657] block mb-[16px]">02</span>
-              <h3 className="text-[18px] font-semibold mb-[10px] text-[#f2f1ec]">Systems, not screens</h3>
-              <p className="text-[14px] leading-[1.65] text-[#8b8f96]">
-                Every interface sits on top of data flow, state, and failure modes. I design the system first — the UI is just where it becomes visible.
-              </p>
+
+            <div className="p-[32px] rounded-[3px] border border-[#d4a657]/20 bg-linear-to-br from-[#14120f] to-[#0c0d0f] flex max-[860px]:flex-col items-center justify-between gap-[32px]">
+              <div className="space-y-[8px]">
+                <h3 className="text-[20px] font-semibold text-[#f2f1ec] flex items-center gap-[10px]">
+                  <span className="dot w-[8px] h-[8px] rounded-full bg-[#d4a657] animate-pulse shadow-[0_0_8px_#d4a657]"></span>
+                  FlientSec
+                </h3>
+                <p className="text-[14px] leading-[1.65] text-[#8b8f96] max-w-[600px]">
+                  Product-driven threat intelligence and real-time audit-compliance orchestrator. Decouples heavy compliance audits and vulnerability scans using background task message queues to verify evidence blocks.
+                </p>
+              </div>
+              <a
+                href="https://github.com/Rarebuffalo/FlientSec"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-ghost shrink-0 px-[20px] py-[10px] text-[13px] font-medium rounded-[3px] text-[#f2f1ec] border border-[rgba(245,245,242,0.14)] hover:border-[#d4a657] hover:text-[#d4a657] transition-all"
+              >
+                Source Repository ↗
+              </a>
             </div>
-            <div className="principle pt-[40px] border-t border-[rgba(245,245,242,0.14)]">
-              <span className="idx mono text-[12px] text-[#d4a657] block mb-[16px]">03</span>
-              <h3 className="text-[18px] font-semibold mb-[10px] text-[#f2f1ec]">Ship the smallest working thing</h3>
-              <p className="text-[14px] leading-[1.65] text-[#8b8f96]">
-                Prototypes earn their next iteration through real usage, not through more planning. I&apos;d rather learn from a rough version in front of users.
-              </p>
+          </div>
+
+          {/* Featured Projects */}
+          <div className="py-[96px] border-b border-[rgba(245,245,242,0.08)]">
+            <FeaturedProjects />
+          </div>
+
+          {/* Curiosity Projects Grid */}
+          <div className="curiosity py-[96px] reveal">
+            <div className="section-head flex items-baseline justify-between pb-[40px] border-b border-[rgba(245,245,242,0.08)] mb-[64px]">
+              <div>
+                <span className="label mono text-[12px] text-[#d4a657]">OTHER WORK</span>
+                <h2 className="font-display font-semibold text-[32px] max-md:text-[24px] mt-[6px] text-[#f2f1ec]">
+                  Build out of curiosity
+                </h2>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 max-md:grid-cols-1 gap-[24px]">
+              {curiosityProjects.map((sys) => (
+                <div
+                  key={sys.id}
+                  className="card p-[24px] rounded-[3px] border border-[rgba(245,245,242,0.08)] bg-[#101215]/30 flex flex-col justify-between hover:border-[#d4a657]/35 transition-all"
+                >
+                  <div>
+                    <h3 className="text-[17px] font-semibold text-[#f2f1ec] mb-[8px]">{sys.name}</h3>
+                    <p className="text-[13px] leading-[1.65] text-[#8b8f96] mb-[20px]">{sys.tagline}</p>
+                  </div>
+                  <div className="space-y-[16px]">
+                    <div className="flex flex-wrap gap-[6px]">
+                      {sys.stack.slice(0, 4).map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-[8px] py-[3px] rounded-[20px] bg-[#101215] border border-[rgba(245,245,242,0.08)] text-[#8b8f96] font-mono text-[10px]"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="flex gap-[16px] pt-[12px] border-t border-[rgba(245,245,242,0.08)]">
+                      <a
+                        href={sys.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[12px] font-medium text-[#f2f1ec] hover:text-[#d4a657] transition-colors"
+                      >
+                        GitHub ↗
+                      </a>
+                      <Link
+                        href={`/systems/${sys.id}`}
+                        className="text-[12px] font-medium text-[#f2f1ec] hover:text-[#d4a657] transition-colors"
+                      >
+                        Case Study ↗
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* Section 6: Minimal Tech Matrix */}
-        <TechMatrix />
+        {/* Section 3: Work Experience */}
+        <section className="work py-[96px] reveal border-b border-[rgba(245,245,242,0.08)]" id="work">
+          <div className="section-head flex items-baseline justify-between pb-[40px] border-b border-[rgba(245,245,242,0.08)] mb-[64px]">
+            <div>
+              <span className="label mono text-[12px] text-[#d4a657]">EXPERIENCE</span>
+              <h2 className="font-display font-semibold text-[32px] max-md:text-[24px] mt-[6px] text-[#f2f1ec]">
+                Professional timeline
+              </h2>
+            </div>
+          </div>
 
-        {/* Section 7: Contact Layout */}
+          <div className="experience-card p-[32px] rounded-[3px] border border-[rgba(245,245,242,0.08)] bg-[#101215]/30">
+            <div className="flex justify-between items-start max-md:flex-col max-md:gap-[12px] pb-[24px] border-b border-[rgba(245,245,242,0.08)] mb-[24px]">
+              <div>
+                <h3 className="text-[20px] font-semibold text-[#f2f1ec]">OpenStreamLabs</h3>
+                <p className="text-[14px] text-[#d4a657] mt-[4px]">Fullstack Developer Intern</p>
+              </div>
+              <div className="text-right max-md:text-left">
+                <span className="mono text-[12px] text-[#8b8f96] block">Nov 2025 - Mar 2026</span>
+                <span className="inline-flex items-center gap-[6px] px-[8px] py-[3px] rounded-[12px] bg-[#d4a657]/10 border border-[#d4a657]/20 text-[#d4a657] text-[10px] mono mt-[6px] font-semibold">
+                  {experienceData.status}
+                </span>
+              </div>
+            </div>
+
+            <ul className="flex flex-col gap-[16px] list-none p-0 m-0">
+              {experienceData.highlights.map((highlight, index) => {
+                const [title, desc] = highlight.split(": ");
+                return (
+                  <li key={index} className="flex gap-[12px] items-start">
+                    <span className="w-[6px] h-[6px] rounded-full bg-[#d4a657] mt-[8px] shrink-0" />
+                    <div>
+                      <strong className="text-[#f2f1ec] font-medium text-[15px]">{title}:</strong>
+                      <span className="text-[#8b8f96] text-[14px] leading-[1.6] block mt-[2px]">{desc}</span>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </section>
+
+        {/* Section 4: Technical Toolbox */}
+        <section id="skills" className="tech-matrix-container border-b border-[rgba(245,245,242,0.08)]">
+          <TechMatrix />
+        </section>
+
+        {/* Section 5: Contact Layout */}
         <section className="contact py-[144px] reveal text-center flex flex-col items-center justify-center" id="contact">
           <span className="label mono text-[12px] text-[#d4a657]">CONTACT</span>
           <h2 className="font-display font-semibold text-[30px] min-[640px]:text-[42px] min-[1024px]:text-[52px] leading-[1.15] text-[#f2f1ec] max-w-[640px] mt-[14px] mb-[40px]">
