@@ -5,6 +5,7 @@ import BlueprintGrid from "@/components/BlueprintGrid";
 import Header from "@/components/Header";
 import FeaturedProjects from "@/components/FeaturedProjects";
 import TechMatrix from "@/components/TechMatrix";
+import { portfolioSystems } from "@/data/portfolioData";
 
 export default function Home() {
   useEffect(() => {
@@ -29,6 +30,15 @@ export default function Home() {
     };
   }, []);
 
+  // Filter systems for the curiosity section
+  const curiosityProjects = portfolioSystems.filter(
+    (sys) =>
+      sys.id !== "securelens" &&
+      sys.id !== "sentinel" &&
+      sys.id !== "equityforge" &&
+      sys.id !== "flientsec"
+  );
+
   return (
     <>
       {/* Background blueprint grid and vignette overlays */}
@@ -42,7 +52,7 @@ export default function Home() {
       <main className="wrap relative z-10 pt-[64px] min-h-screen">
         
         {/* Section 1: Hero Identity */}
-        <section className="hero min-h-[calc(100vh-64px)] flex flex-col justify-center pb-[64px]">
+        <section className="hero relative min-h-[calc(100vh-64px)] flex flex-col justify-center pb-[64px]">
           <div className="eyebrow flex items-center gap-[10px] text-[12px] text-[#8b8f96] mb-[24px] animate-rise">
             <span className="bar w-[22px] h-[1px] bg-[#d4a657]/45" />
             <span className="mono">SOFTWARE ENGINEER — NEW DELHI</span>
@@ -81,7 +91,93 @@ export default function Home() {
         {/* Section 2: Flagship Work Grid */}
         <FeaturedProjects />
 
-        {/* Section 3: Engineering Philosophy Grid */}
+        {/* Section 3: Build out of Curiosity Grid */}
+        <section className="curiosity py-[96px] reveal border-b border-[rgba(245,245,242,0.08)]">
+          <div className="section-head flex items-baseline justify-between pb-[40px] border-b border-[rgba(245,245,242,0.08)] mb-[64px]">
+            <div>
+              <span className="label mono text-[12px] text-[#d4a657]">OTHER WORK</span>
+              <h2 className="font-display font-semibold text-[32px] max-md:text-[24px] mt-[6px] text-[#f2f1ec]">
+                Build out of curiosity
+              </h2>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 max-md:grid-cols-1 gap-[24px]">
+            {curiosityProjects.map((sys) => (
+              <div
+                key={sys.id}
+                className="card p-[24px] rounded-[3px] border border-[rgba(245,245,242,0.08)] bg-[#101215]/30 flex flex-col justify-between hover:border-[#d4a657]/35 transition-all"
+              >
+                <div>
+                  <h3 className="text-[17px] font-semibold text-[#f2f1ec] mb-[8px]">{sys.name}</h3>
+                  <p className="text-[13px] leading-[1.65] text-[#8b8f96] mb-[20px]">{sys.tagline}</p>
+                </div>
+                <div className="space-y-[16px]">
+                  <div className="flex flex-wrap gap-[6px]">
+                    {sys.stack.slice(0, 4).map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-[8px] py-[3px] rounded-[20px] bg-[#101215] border border-[rgba(245,245,242,0.08)] text-[#8b8f96] font-mono text-[10px]"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="flex gap-[16px] pt-[12px] border-t border-[rgba(245,245,242,0.08)]">
+                    <a
+                      href={sys.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[12px] font-medium text-[#f2f1ec] hover:text-[#d4a657] transition-colors"
+                    >
+                      GitHub ↗
+                    </a>
+                    <a
+                      href={`/systems/${sys.id}`}
+                      className="text-[12px] font-medium text-[#f2f1ec] hover:text-[#d4a657] transition-colors"
+                    >
+                      Case Study ↗
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Section 4: Currently Building Banner */}
+        <section className="currently-building py-[96px] reveal border-b border-[rgba(245,245,242,0.08)]">
+          <div className="section-head flex items-baseline justify-between pb-[40px] border-b border-[rgba(245,245,242,0.08)] mb-[48px]">
+            <div>
+              <span className="label mono text-[12px] text-[#d4a657]">ACTIVE BUILD</span>
+              <h2 className="font-display font-semibold text-[32px] max-md:text-[24px] mt-[6px] text-[#f2f1ec]">
+                What I&apos;m building now
+              </h2>
+            </div>
+          </div>
+
+          <div className="p-[32px] rounded-[3px] border border-[#d4a657]/20 bg-linear-to-br from-[#14120f] to-[#0c0d0f] flex max-[860px]:flex-col items-center justify-between gap-[32px]">
+            <div className="space-y-[8px]">
+              <h3 className="text-[20px] font-semibold text-[#f2f1ec] flex items-center gap-[10px]">
+                <span className="dot w-[8px] h-[8px] rounded-full bg-[#d4a657] animate-pulse shadow-[0_0_8px_#d4a657]"></span>
+                FlientSec
+              </h3>
+              <p className="text-[14px] leading-[1.65] text-[#8b8f96] max-w-[600px]">
+                Product-driven threat intelligence and real-time audit-compliance orchestrator. Decouples heavy compliance audits and vulnerability scans using background task message queues to verify evidence blocks.
+              </p>
+            </div>
+            <a
+              href="https://github.com/Rarebuffalo/FlientSec"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-ghost shrink-0 px-[20px] py-[10px] text-[13px] font-medium rounded-[3px] text-[#f2f1ec] border border-[rgba(245,245,242,0.14)] hover:border-[#d4a657] hover:text-[#d4a657] transition-all"
+            >
+              Source Repository ↗
+            </a>
+          </div>
+        </section>
+
+        {/* Section 5: Engineering Philosophy Grid */}
         <section className="philosophy py-[96px] reveal border-b border-[rgba(245,245,242,0.08)]" id="philosophy">
           <div className="section-head flex items-baseline justify-between pb-[40px] border-b border-[rgba(245,245,242,0.08)] mb-[64px]">
             <div>
@@ -117,10 +213,10 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Section 4: Minimal Tech Matrix */}
+        {/* Section 6: Minimal Tech Matrix */}
         <TechMatrix />
 
-        {/* Section 5: Contact Layout */}
+        {/* Section 7: Contact Layout */}
         <section className="contact py-[144px] reveal text-center flex flex-col items-center justify-center" id="contact">
           <span className="label mono text-[12px] text-[#d4a657]">CONTACT</span>
           <h2 className="font-display font-semibold text-[30px] min-[640px]:text-[42px] min-[1024px]:text-[52px] leading-[1.15] text-[#f2f1ec] max-w-[640px] mt-[14px] mb-[40px]">
