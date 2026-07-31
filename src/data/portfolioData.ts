@@ -98,96 +98,10 @@ export const portfolioSystems: PortfolioSystem[] = [
     ]
   },
   {
-    id: "txnforge",
-    name: "TxnForge",
-    status: "ONLINE",
-    type: "02 · SECURE AUTHORIZATION",
-    color: "blue",
-    tagline: "High-performance transactional authentication and secure validation engine.",
-    problem: "Legacy B2B auth flows suffered from slow session verification bottlenecks and high database load under peak API request volumes, compromising transactional consistency.",
-    solution: "Engineered a distributed validation service utilizing decoupled JWT session caches, strict RBAC database access controls, and end-to-end integration test suites with 98% code coverage.",
-    impact: [
-      "Achieved sub-15ms session token validation latencies.",
-      "Reduced backend database auth queries by 84% using Redis replication.",
-      "Zero downtime or security breaches logged across simulated high-concurrency stress runs."
-    ],
-    stack: ["Go", "gRPC", "Redis", "PostgreSQL", "Docker", "GitHub Actions"],
-    github: "https://github.com/Rarebuffalo/TxnForge",
-    demo: "https://github.com/Rarebuffalo/TxnForge",
-    decisions: [
-      {
-        decision: "JWT Session Cache on Redis",
-        alternative: "Direct database lookups for each request",
-        reason: "Improves read performance and isolates database from heavy authentication traffic.",
-        tradeoff: "Requires handling session invalidation sync over Redis key expirations."
-      }
-    ],
-    failureStory: {
-      attempt: "Originally attempted to check sessions through direct relational DB queries on each request.",
-      symptom: "Created intense query queues and lock-ups during peak stress tests, hitting database resource limits.",
-      fix: "Refactored the authentication verify layer to read from a distributed Redis cache, validating cache hits instantly."
-    },
-    nodes: [
-      { id: "tx-client", label: "API Client", type: "frontend", x: 10, y: 50 },
-      { id: "tx-grpc", label: "gRPC Auth Service", type: "gateway", x: 220, y: 50 },
-      { id: "tx-redis", label: "Redis Session Store", type: "queue", x: 420, y: 10 },
-      { id: "tx-db", label: "PostgreSQL Store", type: "database", x: 420, y: 90 }
-    ],
-    edges: [
-      { from: "tx-client", to: "tx-grpc", label: "VerifyToken", animated: true },
-      { from: "tx-grpc", to: "tx-redis", label: "Query cache", animated: true },
-      { from: "tx-grpc", to: "tx-db", label: "Fallback load", animated: false }
-    ]
-  },
-  {
-    id: "flientsec",
-    name: "FlientSec",
-    status: "ONLINE",
-    type: "03 · COMPLIANCE SYSTEMS",
-    color: "purple",
-    tagline: "Product-driven threat intelligence and real-time audit-compliance orchestrator.",
-    problem: "B2B SaaS startups struggle with compliance evidence auditing, requiring manual logs review and exposing systems to critical vulnerabilities before SOC-2 check windows.",
-    solution: "Designed an automated monitoring engine performing security policy checks, log normalizations, and live risk-state audits, dispatching real-time notifications to unified webhooks.",
-    impact: [
-      "Automated 80% of compliance evidence aggregation tasks.",
-      "Dispatches real-time network anomaly alerts within 200ms of rule violation.",
-      "Comprehensive, unified compliance dashboard tracking 50+ security vectors."
-    ],
-    stack: ["Python", "Django", "PostgreSQL", "RabbitMQ", "React", "AWS"],
-    github: "https://github.com/Rarebuffalo/FlientSec",
-    demo: "https://github.com/Rarebuffalo/FlientSec",
-    decisions: [
-      {
-        decision: "RabbitMQ Message broker for logs routing",
-        alternative: "Database-backed task scheduling table",
-        reason: "RabbitMQ processes high-throughput log streams asynchronously without locking primary database tables.",
-        tradeoff: "Adds minor operational complexity by adding a message broker dependency."
-      }
-    ],
-    failureStory: {
-      attempt: "Originally wrote compliance audit checks directly within the web request thread.",
-      symptom: "Slow page loads and timeout failures whenever checking large volumes of background systems telemetry.",
-      fix: "Decoupled audit execution into background consumer tasks managed asynchronously by RabbitMQ workers."
-    },
-    nodes: [
-      { id: "fs-dashboard", label: "React Console", type: "frontend", x: 10, y: 50 },
-      { id: "fs-api", label: "Django REST API", type: "gateway", x: 200, y: 50 },
-      { id: "fs-queue", label: "RabbitMQ Queue", type: "queue", x: 380, y: 50 },
-      { id: "fs-worker", label: "Audit Worker", type: "worker", x: 550, y: 50 },
-      { id: "fs-db", label: "PostgreSQL Database", type: "database", x: 720, y: 50 }
-    ],
-    edges: [
-      { from: "fs-dashboard", to: "fs-api", label: "Query compliance", animated: false },
-      { from: "fs-api", to: "fs-queue", label: "Trigger scan", animated: true },
-      { from: "fs-queue", to: "fs-worker", label: "Consume logs", animated: true },
-      { from: "fs-worker", to: "fs-db", label: "Write results", animated: true }
-    ]
-  },
-  {
     id: "sentinel",
     name: "Sentinel System",
     status: "MONITORING",
-    type: "Uptime & API Monitoring",
+    type: "02 · SYSTEM MONITORING",
     color: "orange",
     tagline: "Startup-ready multi-tenant API monitor with automated Celery checks and Slack/Discord alerting.",
     problem: "API downtime or slow responses lead to user churn. Startups need immediate alerts without the high licensing cost of enterprise APM tools.",
@@ -200,11 +114,128 @@ export const portfolioSystems: PortfolioSystem[] = [
     stack: ["Python", "FastAPI", "Celery", "Redis", "Node.js", "React 18", "PostgreSQL"],
     github: "https://github.com/Rarebuffalo/Sentinel",
     demo: "https://github.com/Rarebuffalo/Sentinel",
-    decisions: [],
+    decisions: [
+      {
+        decision: "Celery Task Queue + Redis Broker",
+        alternative: "Asyncio task loops inside FastAPI",
+        reason: "Guarantees scheduling accuracy and isolates long-running HTTP polling requests outside the main API web thread pool, preventing server blockages.",
+        tradeoff: "Adds operational dependency on Redis and Celery processes, managed via container orchestrations."
+      }
+    ],
     failureStory: {
       attempt: "Originally built the database schema without proper user boundaries and isolated connections.",
       symptom: "Database locks and leakage of endpoint alerts occurred between test tenant accounts under heavy simulated traffic.",
       fix: "Secured database queries by implementing strict JWT middleware locks using SQLAlchemy dependencies binding operations directly to authenticated session contexts."
+    },
+    nodes: [
+      { id: "se-dashboard", label: "React Frontend", type: "frontend", x: 10, y: 50 },
+      { id: "se-gateway", label: "FastAPI API Server", type: "gateway", x: 180, y: 50 },
+      { id: "se-redis", label: "Redis Broker", type: "queue", x: 350, y: 50 },
+      { id: "se-celery", label: "Celery Worker", type: "worker", x: 520, y: 50 },
+      { id: "se-node", label: "Node.js Alerts Service", type: "worker", x: 700, y: 10 },
+      { id: "se-db", label: "PostgreSQL DB", type: "database", x: 700, y: 90 }
+    ],
+    edges: [
+      { from: "se-dashboard", to: "se-gateway", label: "Poll Stats", animated: true },
+      { from: "se-gateway", to: "se-redis", label: "Push Monitor Job", animated: true },
+      { from: "se-redis", to: "se-celery", label: "Fetch Poller Task", animated: true },
+      { from: "se-celery", to: "se-node", label: "Trigger Down Alerts", animated: true },
+      { from: "se-gateway", to: "se-db", label: "Read Configurations", animated: false },
+      { from: "se-celery", to: "se-db", label: "Write Check Run logs", animated: false }
+    ]
+  },
+  {
+    id: "equityforge",
+    name: "EquityForge",
+    status: "ONLINE",
+    type: "03 · RESEARCH PLATFORM",
+    color: "green",
+    tagline: "Financial research automation platform transforming unstructured documents into institutional equity reports.",
+    problem: "B2B financial analysts spend hours parsing complex PDFs, TXT summaries, and CSV data to draft reports, leading to visual formatting errors and manual calculations.",
+    solution: "Built a Python FastAPI backend that parses documents via pdfplumber/pandas, runs structured GPT-4o/Gemini extractions validated by Pydantic schemas, programmatically generates Matplotlib visual charts, and converts Jinja2-rendered HTML pages into professional 4-page PDFs via WeasyPrint.",
+    impact: [
+      "Generates print-perfect A4-paginated 4-page institutional PDF reports in seconds.",
+      "Handles PDF, TXT, and CSV formats with unified text normalization.",
+      "Zero-hallucination guardrails and automated Matplotlib data visualization."
+    ],
+    stack: ["Python", "FastAPI", "Next.js", "GPT-4o / Gemini", "WeasyPrint", "Matplotlib", "Pydantic"],
+    github: "https://github.com/Rarebuffalo/equityforge",
+    demo: "https://github.com/Rarebuffalo/equityforge",
+    decisions: [
+      {
+        decision: "WeasyPrint PDF engine over client-side jsPDF",
+        alternative: "Client-side browser generation",
+        reason: "WeasyPrint compiles print-perfect CSS-driven pagination, exact page-breaks, and margin calculations reliably on the server.",
+        tradeoff: "Requires system-level dependencies (Pango, Cairo) installed on the deployment environment."
+      }
+    ],
+    failureStory: {
+      attempt: "Originally attempted client-side PDF rendering using vanilla canvas-to-pdf libraries.",
+      symptom: "Severe layout clipping, font inconsistencies, and pagination breaks across dynamic page boundaries.",
+      fix: "Migrated to a server-side WeasyPrint converter utilizing Jinja2 HTML templates and CSS print specifications."
+    },
+    nodes: [
+      { id: "ef-ui", label: "Next.js Upload UI", type: "frontend", x: 10, y: 50 },
+      { id: "ef-api", label: "FastAPI Backend", type: "gateway", x: 200, y: 50 },
+      { id: "ef-llm", label: "Gemini / OpenAI API", type: "ai", x: 380, y: 10 },
+      { id: "ef-pdf", label: "WeasyPrint Compiler", type: "worker", x: 380, y: 90 },
+      { id: "ef-output", label: "PDF Download", type: "database", x: 560, y: 50 }
+    ],
+    edges: [
+      { from: "ef-ui", to: "ef-api", label: "Upload docs", animated: true },
+      { from: "ef-api", to: "ef-llm", label: "Run extraction", animated: true },
+      { from: "ef-api", to: "ef-pdf", label: "Compile layout", animated: true },
+      { from: "ef-pdf", to: "ef-output", label: "Return report PDF", animated: true }
+    ]
+  },
+  {
+    id: "flientsec",
+    name: "FlientSec",
+    status: "ONLINE",
+    type: "COMPLIANCE MONITORING",
+    color: "purple",
+    tagline: "Product-driven threat intelligence and real-time audit-compliance orchestrator.",
+    problem: "B2B SaaS startups struggle with compliance evidence auditing, requiring manual logs review and exposing systems to critical vulnerabilities before SOC-2 check windows.",
+    solution: "Designed an automated monitoring engine performing security policy checks, log normalizations, and live risk-state audits, dispatching real-time notifications to unified webhooks.",
+    impact: [
+      "Automated 80% of compliance evidence aggregation tasks.",
+      "Dispatches real-time network anomaly alerts within 200ms of rule violation.",
+      "Comprehensive, unified compliance dashboard tracking 50+ security vectors."
+    ],
+    stack: ["Python", "Django", "PostgreSQL", "RabbitMQ", "React", "AWS"],
+    github: "https://github.com/Rarebuffalo/FlientSec",
+    demo: "https://github.com/Rarebuffalo/FlientSec",
+    decisions: [],
+    failureStory: {
+      attempt: "Originally wrote compliance audit checks directly within the web request thread.",
+      symptom: "Slow page loads and timeout failures whenever checking large volumes of background systems telemetry.",
+      fix: "Decoupled audit execution into background consumer tasks managed asynchronously by RabbitMQ workers."
+    },
+    nodes: [],
+    edges: []
+  },
+  {
+    id: "txnforge",
+    name: "TxnForge",
+    status: "ONLINE",
+    type: "Secure Authorization",
+    color: "blue",
+    tagline: "High-performance transactional authentication and secure validation engine.",
+    problem: "Legacy B2B auth flows suffered from slow session verification bottlenecks and high database load under peak API request volumes, compromising transactional consistency.",
+    solution: "Engineered a distributed validation service utilizing decoupled JWT session caches, strict RBAC database access controls, and end-to-end integration test suites with 98% code coverage.",
+    impact: [
+      "Achieved sub-15ms session token validation latencies.",
+      "Reduced backend database auth queries by 84% using Redis replication.",
+      "Zero downtime or security breaches logged across simulated high-concurrency stress runs."
+    ],
+    stack: ["Go", "gRPC", "Redis", "PostgreSQL", "Docker", "GitHub Actions"],
+    github: "https://github.com/Rarebuffalo/TxnForge",
+    demo: "https://github.com/Rarebuffalo/TxnForge",
+    decisions: [],
+    failureStory: {
+      attempt: "Originally attempted to check sessions through direct relational DB queries on each request.",
+      symptom: "Created intense query queues and lock-ups during peak stress tests, hitting database resource limits.",
+      fix: "Refactored the authentication verify layer to read from a distributed Redis cache, validating cache hits instantly."
     },
     nodes: [],
     edges: []
