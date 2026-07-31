@@ -99,7 +99,7 @@ export const portfolioSystems: PortfolioSystem[] = [
   },
   {
     id: "sentinel",
-    name: "Sentinel System",
+    name: "Sentinel",
     status: "MONITORING",
     type: "02 · SYSTEM MONITORING",
     color: "orange",
@@ -242,7 +242,7 @@ export const portfolioSystems: PortfolioSystem[] = [
   },
   {
     id: "scaleshorts",
-    name: "ScaleShorts System",
+    name: "ScaleShorts",
     status: "DEPLOYED",
     type: "AI Reel Generation Pipeline",
     color: "purple",
@@ -268,7 +268,7 @@ export const portfolioSystems: PortfolioSystem[] = [
   },
   {
     id: "esg-dashboard",
-    name: "BreatheESG Ingestion System",
+    name: "BreatheESG Ingestion",
     status: "DEPLOYED",
     type: "ESG Normalization & Audit Pipeline",
     color: "green",
@@ -294,7 +294,7 @@ export const portfolioSystems: PortfolioSystem[] = [
   },
   {
     id: "assessment-creator",
-    name: "VedaAI Assessment Creator System",
+    name: "VedaAI Assessment Creator",
     status: "ACTIVE",
     type: "AI Generation Workflow Platform",
     color: "purple",
@@ -320,7 +320,7 @@ export const portfolioSystems: PortfolioSystem[] = [
   },
   {
     id: "vanco-ai",
-    name: "Vanco AI Suite System",
+    name: "Vanco AI Suite",
     status: "RESEARCH",
     type: "AI & Machine Learning Assessment",
     color: "purple",
@@ -346,7 +346,7 @@ export const portfolioSystems: PortfolioSystem[] = [
   },
   {
     id: "openllm-gateway",
-    name: "OpenLLM Gateway System",
+    name: "OpenLLM Gateway",
     status: "ONLINE",
     type: "High-Throughput LLM Proxy",
     color: "blue",
@@ -372,7 +372,7 @@ export const portfolioSystems: PortfolioSystem[] = [
   },
   {
     id: "driveseek",
-    name: "DriveSeek System",
+    name: "DriveSeek",
     status: "ACTIVE",
     type: "Conversational Drive Search Agent",
     color: "blue",
@@ -398,7 +398,7 @@ export const portfolioSystems: PortfolioSystem[] = [
   },
   {
     id: "spacedcode",
-    name: "SpacedCode System",
+    name: "SpacedCode",
     status: "ONLINE",
     type: "Workflow-Driven Developer System",
     color: "green",
