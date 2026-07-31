@@ -31,17 +31,17 @@ export default function Header() {
         <div className="flex items-center gap-[24px]">
           <div className="navlinks flex gap-8 max-[860px]:hidden">
             <a
-              href="#projects"
-              className="text-[13px] text-gray-dark hover:text-soft-white transition-colors duration-250 relative group"
-            >
-              Projects
-              <span className="absolute left-0 right-0 bottom-[-6px] h-[1px] bg-gold scale-x-0 origin-left transition-transform duration-250 group-hover:scale-x-100" />
-            </a>
-            <a
               href="#about"
               className="text-[13px] text-gray-dark hover:text-soft-white transition-colors duration-250 relative group"
             >
               About
+              <span className="absolute left-0 right-0 bottom-[-6px] h-[1px] bg-gold scale-x-0 origin-left transition-transform duration-250 group-hover:scale-x-100" />
+            </a>
+            <a
+              href="#projects"
+              className="text-[13px] text-gray-dark hover:text-soft-white transition-colors duration-250 relative group"
+            >
+              Projects
               <span className="absolute left-0 right-0 bottom-[-6px] h-[1px] bg-gold scale-x-0 origin-left transition-transform duration-250 group-hover:scale-x-100" />
             </a>
             <a
