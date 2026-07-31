@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { RecruiterModeProvider } from "@/context/RecruiterModeContext";
 
 export const metadata: Metadata = {
-  title: "KRISHNA OS // AI Systems Engineer",
-  description: "The Operating System dashboard of Krishna, AI Systems Engineer. Focused on distributed backends, AI infrastructure, and production workflows.",
+  title: "Krishna — Systems & Backend Engineer",
+  description: "Personal portfolio of Krishna, Systems & Backend Engineer. Building production‑grade B2B SaaS developer tools, compliance systems, and async infrastructure.",
 };
 
 export default function RootLayout({
@@ -13,12 +12,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark scroll-smooth">
-      <body className="antialiased bg-[#050505] text-[#F5F5F7]">
-        <RecruiterModeProvider>
-          {children}
-        </RecruiterModeProvider>
+    <html lang="en" className="scroll-smooth">
+      <body className="antialiased">
+        {children}
       </body>
     </html>
   );
 }
+
