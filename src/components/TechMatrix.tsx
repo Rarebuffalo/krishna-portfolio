@@ -5,16 +5,37 @@ import React from "react";
 export default function TechMatrix() {
   const categories = [
     {
-      title: "Backend & Systems",
-      skills: ["Go / gRPC", "Python", "FastAPI", "Django", "Node.js / Express"],
+      title: "Languages & Frontend",
+      skills: [
+        "Python",
+        "Java",
+        "JavaScript / TypeScript",
+        "SQL",
+        "React.js / Next.js",
+        "HTML / CSS / Tailwind CSS"
+      ],
     },
     {
-      title: "AI & Machine Learning",
-      skills: ["Gemini & OpenAI API", "LangGraph Agentic Flows", "Vector Search (FAISS)", "NetworkX Knowledge Graphs", "LightGBM & YOLOv8"],
+      title: "Backend & AI",
+      skills: [
+        "FastAPI",
+        "Node.js / Express.js",
+        "OpenAI & Gemini APIs",
+        "RAG & AI Agent Workflows",
+        "Prompt Engineering",
+        "LLM Orchestration"
+      ],
     },
     {
-      title: "Data & Infrastructure",
-      skills: ["PostgreSQL & SQLite", "Redis (Cache & Queues)", "RabbitMQ Message Streams", "Docker Containerization", "Git & CI/CD Pipelines"],
+      title: "Infrastructure & Concepts",
+      skills: [
+        "PostgreSQL / MongoDB / Redis",
+        "Docker & Linux",
+        "Git & GitHub Actions",
+        "Authentication & Idempotency",
+        "Asynchronous Processing",
+        "Event-Driven Systems & Fault Tolerance"
+      ],
     },
   ];
 
