@@ -1,68 +1,55 @@
-# KRISHNA OS v2.0
-> **The Operating System Dashboard of an AI Systems Engineer**
+# Krishna — Systems & Backend Engineer
 
-Welcome to **KRISHNA OS**, a live engineering command center portfolio built to demonstrate deep-dive backend pipelines, AI agent automation platforms, and distributed systems architecture. 
-
-It is designed to make visitors (CTOs, startup founders, recruiters) feel like they have entered an active operations deck, rather than reading a static resume.
+A premium, editorial systems‑engineering portfolio showcasing B2B developer tools, compliance systems, and distributed asynchronous backend architectures.
 
 ---
 
-## Key Features
+## Flagship Systems
 
-### 1. Simulated Boot Sequence
-- Fast startup checks (under 1.2 seconds) simulating core checks (CPU allocations, telemetry buffers, RAG seed checks).
-- Includes an immediate bypass channel (`[Skip Boot]`) for recurring visitors.
+### 1. SecureLens AI
+An automated repository security scanner using concurrency constraints and LLM-driven vulnerability classification.
+*   **Key Highlights:** Triages repository file paths and executes concurrent audits via FastAPI `asyncio.gather` (semaphore-throttled at 5) with strict Pydantic parsing.
+*   **Outcome:** Reduced scan latencies from **12 minutes to under 45 seconds**.
+*   **Stack:** Python, FastAPI, Gemini API, Pydantic v2, PostgreSQL, SQLAlchemy.
+*   **Repository:** [securelens-backend](https://github.com/Rarebuffalo/securelens-backend)
 
-### 2. Recruiter Mode Toggle
-- A global layout switch that transforms the complex, detail-heavy dashboard into a concise, skim-friendly tabular layout.
-- Restructures cards into highly focused **Problem → Solution → Impact** tables to facilitate 20-second reviews.
+### 2. TxnForge
+A high-performance transactional authentication and secure validation engine designed for B2B SaaS portals.
+*   **Key Highlights:** Built a gRPC authentication service managing secure state checks against a decoupled JWT session store cached in Redis.
+*   **Outcome:** Achieved sub-15ms validation responses and reduced direct database requests by **84%**.
+*   **Stack:** Go, gRPC, Redis, PostgreSQL, Docker, GitHub Actions.
+*   **Repository:** [TxnForge](https://github.com/Rarebuffalo/TxnForge)
 
-### 3. Interactive Topology Museum
-- Custom-built interactive canvas drawing systems topology links using animated SVG bezier curves.
-- Moving dashes simulate live message queuing down the connection lines.
-- Clicking components opens dedicated detail sheets explaining **Core Decisions**, **Alternatives Evaluated**, and **Trade-offs**.
-
-### 4. Offline RAG CLI Terminal (Interview Krishna)
-- A client-side typewriter CLI terminal simulating real-time LLM query streams.
-- Allows immediate RAG evaluation on preset inquiry channels (e.g., *"Why Redis over RabbitMQ?"*, *"What did you do at OpenStreamLabs?"*) with zero latency or external API key setups.
-
-### 5. Telemetry Logs & Mission Pipelines
-- Hand-curated logs displaying exact metric progressions (e.g. latency reduced: *420ms → 110ms*) and optimization techniques.
-- Experience at OpenStreamLabs represented as an active, completed build release pipeline.
-
----
-
-## Offline & Low-Memory Optimization
-
-This repository is optimized for isolated, resources-constrained environments:
-- **OOM Prevention**: The frontend replaces heavy canvas frameworks (`reactflow`) and icon packages (`lucide-react`) with lightweight, hand-written SVG implementations, saving ~40MB of memory and preventing Out-Of-Memory compilation crashes.
-- **Network Isolation**: By decoupling typography dependencies from external Google Font fetches (`fonts.googleapis.com`), build-time DNS timeout exceptions (`EAI_AGAIN`) are completely avoided.
-- **Memory-Capped Builds**: Build scripts are optimized to compile cleanly under 512MB RAM caps:
-  `NODE_OPTIONS="--max-old-space-size=512" npm run build`
+### 3. FlientSec
+A product-driven threat intelligence and real-time audit-compliance orchestrator.
+*   **Key Highlights:** Decouples heavy audit log checks using RabbitMQ background tasks to aggregate evidence blocks for SOC 2 and ISO 27001 scopes.
+*   **Outcome:** Automated **80%** of compliance metrics tracking and reports generation.
+*   **Stack:** Python, Django, PostgreSQL, RabbitMQ, React, AWS.
+*   **Repository:** [FlientSec](https://github.com/Rarebuffalo/FlientSec)
 
 ---
 
-## Codebase Topology
+## Engineering Philosophy
 
-- **[documentation/architecture.md](file:///home/Krishna-Singh/krishna-portfolio/documentation/architecture.md)**: In-depth file maps, component designs, and systems blueprints.
-- **[documentation/setup.md](file:///home/Krishna-Singh/krishna-portfolio/documentation/setup.md)**: Command reference for development, package restores, and compilations.
-- **`src/app/page.tsx`**: Main landing command workspace.
-- **`src/app/systems/[id]/page.tsx`**: Dynamic case study routing templates detailing failure stories and design metrics.
-- **`src/data/portfolioData.ts`**: Central data model database.
-- **`src/components/`**: Custom SVG visualizer, CLI prompt terminals, and header toggles.
+1.  **Correctness before cleverness:** Reason through edge cases and write boring, reliable code rather than fragile abstractions.
+2.  **Systems, not screens:** Design data streams, state machines, and fail-safe recovery patterns first—the UI is merely an exposure layer.
+3.  **Ship the smallest working thing:** Deploy and test prototypes under real usage conditions rather than over-planning.
 
 ---
 
-## Quick Start
+## Technical Toolbox
 
-For detailed commands, please check the **[Setup Guide](file:///home/Krishna-Singh/krishna-portfolio/documentation/setup.md)**.
+*   **Languages:** Go, Python, TypeScript, Java, C, SQL
+*   **Backend & Systems:** FastAPI, Django, ExpressJS, gRPC, RabbitMQ, Celery, BullMQ
+*   **Data & Caching:** PostgreSQL, MongoDB, SQLite, Redis
+*   **Orchestrations & DevOps:** Docker, Git, GitHub Actions, AWS
 
-### Run Development Server
-```bash
-npm run dev
-```
+---
 
-### Build Production Assets
-```bash
-NODE_OPTIONS="--max-old-space-size=512" npm run build
-```
+## Codebase Structure
+
+*   `src/app/page.tsx`: Editorial narrative landing page.
+*   `src/app/systems/[id]/page.tsx`: Case study routing template showing failure stories and design details.
+*   `src/components/`: Modular UI assets including background blueprint grids, header menus, and project grid modules.
+*   `src/data/portfolioData.ts`: Unified data definitions for systems and metrics.
+*   `documentation/`: Architectural logs detailing failure scenarios and setups.
