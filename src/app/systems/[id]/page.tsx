@@ -1,6 +1,6 @@
 "use client";
 
-import React, { use } from "react";
+import React, { use, useEffect } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { portfolioSystems } from "@/data/portfolioData";
@@ -13,6 +13,10 @@ type Props = {
 export default function SystemCaseStudyPage({ params }: Props) {
   const { id } = use(params);
   const sys = portfolioSystems.find((s) => s.id === id);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   if (!sys) {
     notFound();
