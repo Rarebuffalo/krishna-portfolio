@@ -229,7 +229,7 @@ export default function Home() {
           <div className="experience-card p-[32px] rounded-[3px] border border-[rgba(245,245,242,0.08)] bg-[#101215]/30">
             <div className="flex justify-between items-start max-md:flex-col max-md:gap-[12px] pb-[24px] border-b border-[rgba(245,245,242,0.08)] mb-[24px]">
               <div>
-                <h3 className="text-[20px] font-semibold text-[#f2f1ec]">OpenStreamLabs</h3>
+                <h3 className="text-[20px] font-semibold text-[#f2f1ec]">OpenStreemLabs</h3>
                 <p className="text-[14px] text-[#d4a657] mt-[4px]">Fullstack Developer Intern</p>
               </div>
               <div className="text-right max-md:text-left">
