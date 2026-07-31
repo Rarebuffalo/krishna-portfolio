@@ -97,7 +97,7 @@ export default function Home() {
               <span className="idx mono text-[12px] text-[#d4a657] block mb-[16px]">01</span>
               <h3 className="text-[18px] font-semibold mb-[10px] text-[#f2f1ec]">Correctness before cleverness</h3>
               <p className="text-[14px] leading-[1.65] text-[#8b8f96]">
-                I reason through edge cases before I reach for the elegant abstraction. Working code that's boring beats clever code that's fragile.
+                I reason through edge cases before I reach for the elegant abstraction. Working code that&apos;s boring beats clever code that&apos;s fragile.
               </p>
             </div>
             <div className="principle pt-[40px] border-t border-[rgba(245,245,242,0.14)]">
@@ -111,7 +111,7 @@ export default function Home() {
               <span className="idx mono text-[12px] text-[#d4a657] block mb-[16px]">03</span>
               <h3 className="text-[18px] font-semibold mb-[10px] text-[#f2f1ec]">Ship the smallest working thing</h3>
               <p className="text-[14px] leading-[1.65] text-[#8b8f96]">
-                Prototypes earn their next iteration through real usage, not through more planning. I'd rather learn from a rough version in front of users.
+                Prototypes earn their next iteration through real usage, not through more planning. I&apos;d rather learn from a rough version in front of users.
               </p>
             </div>
           </div>
@@ -124,7 +124,7 @@ export default function Home() {
         <section className="contact py-[144px] reveal text-center flex flex-col items-center justify-center" id="contact">
           <span className="label mono text-[12px] text-[#d4a657]">CONTACT</span>
           <h2 className="font-display font-semibold text-[30px] min-[640px]:text-[42px] min-[1024px]:text-[52px] leading-[1.15] text-[#f2f1ec] max-w-[640px] mt-[14px] mb-[40px]">
-            Building something that needs a builder?<br />I'd like to hear about it.
+            Building something that needs a builder?<br />I&apos;d like to hear about it.
           </h2>
           <a
             href="mailto:workforkrishnasingh@gmail.com"
