@@ -5,6 +5,7 @@ import BlueprintGrid from "@/components/BlueprintGrid";
 import Header from "@/components/Header";
 import FeaturedProjects from "@/components/FeaturedProjects";
 import TechMatrix from "@/components/TechMatrix";
+import Link from "next/link";
 import { portfolioSystems } from "@/data/portfolioData";
 
 export default function Home() {
@@ -132,12 +133,12 @@ export default function Home() {
                     >
                       GitHub ↗
                     </a>
-                    <a
+                    <Link
                       href={`/systems/${sys.id}`}
                       className="text-[12px] font-medium text-[#f2f1ec] hover:text-[#d4a657] transition-colors"
                     >
                       Case Study ↗
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { portfolioSystems } from "@/data/portfolioData";
 
 export default function FeaturedProjects() {
@@ -143,12 +144,12 @@ export default function FeaturedProjects() {
                   >
                     GitHub ↗
                   </a>
-                  <a
+                  <Link
                     href={`/systems/${project.id}`}
                     className="text-[13px] flex items-center gap-[6px] text-[#f2f1ec] border-b border-transparent pb-[2px] transition-all hover:border-[#d4a657] hover:text-[#d4a657]"
                   >
                     Architecture Case Study ↗
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
