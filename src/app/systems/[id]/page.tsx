@@ -64,25 +64,25 @@ export default function SystemCaseStudyPage({ params }: Props) {
             {sys.nodes.map((node) => (
               <g key={node.id}>
                 <rect
-                  x={node.x - 45}
-                  y={node.y - 18}
-                  width="90"
-                  height="36"
-                  rx="3"
+                  x={node.x - 62}
+                  y={node.y - 21}
+                  width="125"
+                  height="42"
+                  rx="4"
                   fill="#101215"
                   stroke="var(--line-strong)"
                   strokeWidth="1"
                 />
-                <circle cx={node.x - 30} cy={node.y} r="3" fill="var(--gold)" />
+                <circle cx={node.x - 46} cy={node.y} r="4" fill="var(--gold)" />
                 <text
-                  x={node.x + 8}
+                  x={node.x + 6}
                   y={node.y + 4}
                   fill="#f2f1ec"
                   fontFamily="var(--font-sans)"
-                  fontSize="9"
+                  fontSize="11"
                   textAnchor="middle"
                 >
-                  {node.label.length > 10 ? node.label.substring(0, 10) + ".." : node.label}
+                  {node.label.length > 16 ? node.label.substring(0, 16) + ".." : node.label}
                 </text>
               </g>
             ))}
