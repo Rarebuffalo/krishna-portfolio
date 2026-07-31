@@ -23,9 +23,9 @@ export default function SystemCaseStudyPage({ params }: Props) {
     if (!sys.nodes || sys.nodes.length === 0) return null;
 
     return (
-      <div className="w-full relative overflow-x-auto rounded-[3px] border border-[rgba(245,245,242,0.14)] bg-gradient-to-br from-[#14161a] to-[#0c0d0f] p-[24px] flex items-center justify-center min-h-[300px]">
-        <div className="min-w-[600px] h-[200px] relative">
-          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 800 150" preserveAspectRatio="xMidYMid meet" fill="none">
+      <div className="w-full relative rounded-[3px] border border-[rgba(245,245,242,0.14)] bg-gradient-to-br from-[#14161a] to-[#0c0d0f] p-[24px] flex items-center justify-center min-h-[300px]">
+        <div className="w-full h-[260px] relative">
+          <svg className="absolute inset-0 w-full h-full" viewBox="12 10 746 130" preserveAspectRatio="xMidYMid meet" fill="none">
             {/* Draw connectors */}
             {sys.edges.map((edge, idx) => {
               const fromNode = sys.nodes.find((n) => n.id === edge.from);
