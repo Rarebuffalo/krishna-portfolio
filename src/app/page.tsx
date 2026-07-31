@@ -64,7 +64,7 @@ export default function Home() {
           
           <p className="lede mt-[24px] max-w-[560px] text-[17px] leading-[1.65] text-[#8b8f96] animate-rise [animation-delay:240ms]">
             I design and ship developer tooling and compliance systems for B2B SaaS teams. Currently building{" "}
-            <span className="text-[#f2f1ec] font-medium">DevGuard</span>, a machine‑compliance agent for engineering teams pursuing SOC 2 and ISO 27001.
+            <span className="text-[#f2f1ec] font-medium">FlientSec</span>, a machine‑compliance agent for engineering teams pursuing SOC 2 and ISO 27001.
           </p>
           
           <div className="cta-row mt-[64px] flex items-center gap-[24px] animate-rise [animation-delay:360ms] max-sm:flex-col max-sm:items-start max-sm:gap-[16px]">
