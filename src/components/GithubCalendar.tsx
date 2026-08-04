@@ -93,6 +93,8 @@ export default function GithubCalendar() {
             count: d.count,
             level: d.level as 0 | 1 | 2 | 3 | 4,
           }));
+          // Sort chronologically to stretch across the full calendar columns
+          parsedDays.sort((a: DayActivity, b: DayActivity) => a.date.getTime() - b.date.getTime());
           setDays(parsedDays);
           setTotalContributions(data.totalContributions);
         } else {
@@ -109,75 +111,6 @@ export default function GithubCalendar() {
 
     fetchContributions();
   }, [fallbackData]);
-
-  // Calculate dynamic streaks & activity statistics
-  const stats = useMemo(() => {
-    if (days.length === 0) {
-      return { currentStreak: 0, longestStreak: 0, mostActiveDay: "N/A" };
-    }
-
-    // Sort days chronologically for sequence calculation
-    const sortedDays = [...days].sort((a, b) => a.date.getTime() - b.date.getTime());
-
-    // 1. Longest Streak Calculation
-    let longest = 0;
-    let tempStreak = 0;
-    sortedDays.forEach((day) => {
-      if (day.count > 0) {
-        tempStreak++;
-        if (tempStreak > longest) longest = tempStreak;
-      } else {
-        tempStreak = 0;
-      }
-    });
-
-    // 2. Current Streak Calculation
-    let current = 0;
-    const idx = sortedDays.length - 1;
-    
-    // If today and yesterday have 0 commits, streak is broken
-    const lastDay = sortedDays[idx];
-    const prevDay = idx > 0 ? sortedDays[idx - 1] : null;
-
-    if (lastDay && lastDay.count === 0 && prevDay && prevDay.count === 0) {
-      current = 0;
-    } else {
-      // Find starting index (either today or yesterday depending on where active commits are)
-      let checkIdx = idx;
-      if (lastDay && lastDay.count === 0 && prevDay && prevDay.count > 0) {
-        checkIdx = idx - 1;
-      }
-      
-      while (checkIdx >= 0 && sortedDays[checkIdx].count > 0) {
-        current++;
-        checkIdx--;
-      }
-    }
-
-    // 3. Most Active Weekday
-    const weekdaySums = [0, 0, 0, 0, 0, 0, 0];
-    sortedDays.forEach((day) => {
-      weekdaySums[day.date.getDay()] += day.count;
-    });
-
-    let maxVal = -1;
-    let maxDayIdx = 0;
-    weekdaySums.forEach((sum, idx) => {
-      if (sum > maxVal) {
-        maxVal = sum;
-        maxDayIdx = idx;
-      }
-    });
-
-    const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const activeDayName = maxVal > 0 ? dayNames[maxDayIdx] : "N/A";
-
-    return {
-      currentStreak: current,
-      longestStreak: longest,
-      mostActiveDay: activeDayName,
-    };
-  }, [days]);
 
   // Align contributions into 53 weeks columns & extract month headers
   const { weeks, monthLabels } = useMemo(() => {
@@ -251,28 +184,6 @@ export default function GithubCalendar() {
       </div>
 
       <div className="calendar-wrapper relative p-[32px] rounded-[3px] border border-line bg-panel/30 flex flex-col select-none">
-        
-        {/* Dynamic statistics overview board */}
-        <div className="grid grid-cols-3 gap-[16px] mb-[32px] border-b border-line pb-[24px] max-sm:grid-cols-1">
-          <div className="stat-card border border-line bg-panel/10 p-[16px] rounded-[3px]">
-            <span className="mono text-[10px] text-gray-dim block mb-[4px]">CURRENT STREAK</span>
-            <strong className="text-[20px] font-display font-semibold text-soft-white">
-              {loading ? "..." : `${stats.currentStreak} days`}
-            </strong>
-          </div>
-          <div className="stat-card border border-line bg-panel/10 p-[16px] rounded-[3px]">
-            <span className="mono text-[10px] text-gray-dim block mb-[4px]">LONGEST STREAK</span>
-            <strong className="text-[20px] font-display font-semibold text-soft-white">
-              {loading ? "..." : `${stats.longestStreak} days`}
-            </strong>
-          </div>
-          <div className="stat-card border border-line bg-panel/10 p-[16px] rounded-[3px]">
-            <span className="mono text-[10px] text-gray-dim block mb-[4px]">MOST ACTIVE DAY</span>
-            <strong className="text-[20px] font-display font-semibold text-gold">
-              {loading ? "..." : stats.mostActiveDay}
-            </strong>
-          </div>
-        </div>
 
         {/* Loading skeleton placeholder */}
         {loading ? (

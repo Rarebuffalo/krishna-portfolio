@@ -23,27 +23,40 @@ export async function GET() {
       tooltips[match[1]] = match[2].trim();
     }
 
-    // Parse cells: <td ... id="contribution-day-component-X-Y" data-date="YYYY-MM-DD" data-level="L" ...>
+    // Parse cells: <td ... class="ContributionCalendar-day" ...>
     const cells: { date: string; level: number; count: number }[] = [];
-    const cellMatches = htmlText.matchAll(/<td[^>]*id="([^"]+)"[^>]*data-date="([^"]+)"[^>]*data-level="([^"]+)"/g);
+    const cellMatches = htmlText.matchAll(/<td[^>]*class="ContributionCalendar-day"[^>]*>/g);
     
     for (const match of cellMatches) {
-      const id = match[1];
-      const date = match[2];
-      const level = parseInt(match[3], 10);
-      const tooltipText = tooltips[id] || "";
+      const tdTag = match[0];
+      const idMatch = tdTag.match(/id="([^"]+)"/);
+      const dateMatch = tdTag.match(/data-date="([^"]+)"/);
+      const levelMatch = tdTag.match(/data-level="([^"]+)"/);
       
-      // Extract count from tooltip, e.g. "5 contributions on Monday, Aug 4, 2026"
-      const countMatch = tooltipText.match(/^(\d+|No)\s+contribution/i);
-      const count = countMatch ? (countMatch[1].toLowerCase() === "no" ? 0 : parseInt(countMatch[1], 10)) : level * 2;
-      
-      cells.push({ date, level, count });
+      if (idMatch && dateMatch && levelMatch) {
+        const id = idMatch[1];
+        const date = dateMatch[1];
+        const level = parseInt(levelMatch[1], 10);
+        const tooltipText = tooltips[id] || "";
+        
+        // Extract count from tooltip, e.g. "5 contributions on August 3rd."
+        const countMatch = tooltipText.match(/^(\d+|No)\s+contribution/i);
+        const count = countMatch ? (countMatch[1].toLowerCase() === "no" ? 0 : parseInt(countMatch[1], 10)) : level * 2;
+        
+        cells.push({ date, level, count });
+      }
     }
 
     // Parse total contributions in the last year
-    // Matches e.g. "1,538 contributions in the last year"
-    const totalMatch = htmlText.match(/(\d+[,.\d]*)\s+contributions\s+in\s+the\s+last\s+year/i);
-    const totalContributions = totalMatch ? parseInt(totalMatch[1].replace(/,/g, ""), 10) : 0;
+    const totalMatch = htmlText.match(/js-yearly-contributions[\s\S]*?<h2[^>]*>([\s\S]*?)<\/h2>/i);
+    let totalContributions = 0;
+    if (totalMatch) {
+      const cleaned = totalMatch[1].replace(/[\s\r\n]+/g, " ").trim();
+      const numMatch = cleaned.match(/^(\d+[,.\d]*)/);
+      if (numMatch) {
+        totalContributions = parseInt(numMatch[1].replace(/,/g, ""), 10);
+      }
+    }
 
     return NextResponse.json({
       success: true,
