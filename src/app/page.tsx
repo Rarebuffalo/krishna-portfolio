@@ -5,6 +5,7 @@ import BlueprintGrid from "@/components/BlueprintGrid";
 import Header from "@/components/Header";
 import FeaturedProjects from "@/components/FeaturedProjects";
 import TechMatrix from "@/components/TechMatrix";
+import GithubCalendar from "@/components/GithubCalendar";
 import Link from "next/link";
 import { portfolioSystems, experienceData } from "@/data/portfolioData";
 
@@ -119,6 +120,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* Section 1.6: GitHub Activity Monitor */}
+        <GithubCalendar />
 
         {/* Section 2: Projects Container */}
         <section id="projects" className="projects-container border-b border-line">
