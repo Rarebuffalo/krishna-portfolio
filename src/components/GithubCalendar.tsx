@@ -98,7 +98,7 @@ export default function GithubCalendar() {
         } else {
           throw new Error("Invalid response format");
         }
-      } catch (err) {
+      } catch {
         // Safe graceful fallback to seeded mock data
         setDays(fallbackData.daysList);
         setTotalContributions(fallbackData.totalContributions);
@@ -133,7 +133,7 @@ export default function GithubCalendar() {
 
     // 2. Current Streak Calculation
     let current = 0;
-    let idx = sortedDays.length - 1;
+    const idx = sortedDays.length - 1;
     
     // If today and yesterday have 0 commits, streak is broken
     const lastDay = sortedDays[idx];

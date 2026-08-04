@@ -50,10 +50,11 @@ export async function GET() {
       totalContributions: totalContributions || cells.reduce((sum, c) => sum + c.count, 0),
       days: cells,
     });
-  } catch (error: any) {
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : "Failed to fetch GitHub contributions";
     return NextResponse.json({
       success: false,
-      error: error.message || "Failed to fetch GitHub contributions",
+      error: errorMessage,
     }, { status: 500 });
   }
 }

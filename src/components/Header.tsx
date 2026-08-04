@@ -9,17 +9,6 @@ export default function Header() {
     setTheme(activeTheme);
   }, []);
 
-  const toggleTheme = () => {
-    const nextTheme = theme === "dark" ? "light" : "dark";
-    setTheme(nextTheme);
-    document.documentElement.setAttribute("data-theme", nextTheme);
-    if (nextTheme === "light") {
-      document.documentElement.classList.add("light");
-    } else {
-      document.documentElement.classList.remove("light");
-    }
-    localStorage.setItem("theme", nextTheme);
-  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-20 backdrop-blur-md bg-backdrop border-b border-line">
